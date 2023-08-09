@@ -1,5 +1,7 @@
 import { Icon } from "@iconify/react";
 import Logo from "../../Images/logo.jpeg";
+import { footerSocialMediaList, footerlist } from "./footerlist";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   const commonStyle = "flex flex-row justify-center items-center ";
@@ -9,31 +11,30 @@ const Footer = () => {
     >
       <div className="flex flex-row justify-center items-center gap-2 cursor-pointer">
         <img className="w-6 h-6 sm:w-12 sm:h-12" src={Logo} alt="" />
-        <div className="font-bold text:xl sm:text-2xl lg:text-4xl text-white">CHARIOT WORKS</div>
+        <div className="font-bold text:xl sm:text-2xl lg:text-4xl text-white">
+          CHARIOT WORKS
+        </div>
       </div>
       <div className={`${commonStyle} flex-col lg:flex-row gap-5 p-3 lg:p-0`}>
-        {["CONTACT", "CAREERS", "LATEST", "PRIVACY POLICY"].map(
-          (list, index) => (
+        {footerlist.map((list, index) => (
+          <Link to={list.link} key={index}>
             <div className="text-[18px] text-white" key={index}>
-              {list}
+              {list.text}
             </div>
-          )
-        )}
+          </Link>
+        ))}
       </div>
       <div className={`${commonStyle}  flex-row gap-5`}>
-        {[
-          "formkit:twitter",
-          "ic:sharp-facebook",
-          "fa:instagram",
-          "et:linkedin",
-          "formkit:whatsapp",
-        ].map((list, index) => (
-          <Icon
-            key={index}
-            className="text-white cursor-pointer"
-            icon={list}
-            fontSize={30}
-          />
+        {footerSocialMediaList.map((list, index) => (
+          <Link to={list.link} key={index}>
+            {" "}
+            <Icon
+              key={index}
+              className="text-white cursor-pointer"
+              icon={list.logo}
+              fontSize={30}
+            />
+          </Link>
         ))}
       </div>
     </div>

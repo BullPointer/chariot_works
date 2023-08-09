@@ -22,7 +22,7 @@ const Welcome = () => {
   }, [currentImg]);
 
   return (
-    <div className="w-full   ">
+    <div className="w-full">
       <div className="w-full flex flex-row overflow-x-hidden transform">
         {Images?.map(({ img, text }, index) => (
           <div

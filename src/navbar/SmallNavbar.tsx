@@ -1,6 +1,6 @@
 import { Icon } from "@iconify/react";
 
-type SmallNavbarProps = {
+export type SmallNavbarProps = {
   show: boolean;
   setShow: React.Dispatch<React.SetStateAction<boolean>>;
 };

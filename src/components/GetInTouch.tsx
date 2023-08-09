@@ -1,5 +1,6 @@
 import { Icon } from "@iconify/react";
 import Img from "../../Images/touch.jpg";
+import { Link } from "react-router-dom";
 const GetInTouch = () => {
   return (
     <div className="relative bg-black">
@@ -10,17 +11,18 @@ const GetInTouch = () => {
         <div className="lg:w-[30%] px-4 lg:px-0 flex flex-col justify-center items-center gap-2">
           <div className="text-4xl sm:text-7xl pb-3 text-white">Contact Us</div>
           <div className="text-lg text-center text-white">
-            Thinking of Giving us a try?
-            Have a design, architecture or engineering need? Want to join SHP as
-            a partner or employee? Drop us a line and let us know how we can
-            best help you.
+            Thinking of Giving us a try? Have a design, architecture or
+            engineering need? Want to join CHARIOT WORKS as a partner or
+            employee? Drop us a line and let us know how we can be of help to you.
           </div>
-          <div className="flex flex-row justify-center items-center gap-2 p-3 cursor-pointer">
-            <div className="text-xl font-semibold text-white">
-              GET IN TOUCH
+          <Link to={"/contact-us"}>
+            <div className="flex flex-row justify-center items-center gap-2 p-3 cursor-pointer">
+              <div className="text-xl font-semibold text-white">
+                GET IN TOUCH
+              </div>
+              <Icon className="text-white" icon="bxs:right-arrow" />
             </div>
-            <Icon className="text-white" icon="bxs:right-arrow" />
-          </div>
+          </Link>
         </div>
       </div>
     </div>
