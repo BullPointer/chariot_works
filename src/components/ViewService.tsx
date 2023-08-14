@@ -1,6 +1,7 @@
 import { Icon } from "@iconify/react";
 import Logo from "../../Images/logo.jpeg";
 import Img from "../../Images/work.jpeg";
+import { Link } from "react-router-dom";
 
 const ViewService = () => {
   return (
@@ -20,7 +21,11 @@ const ViewService = () => {
           place ltering, Speedy job delivery.
         </p>
         <div className="flex flex-row justify-center items-center gap-2 p-3 cursor-pointer">
-          <div className="text-xl font-semibold text-white">VIEW OUR Service</div>
+          <Link to={"/service"}>
+            <div className="text-xl font-semibold text-white">
+              VIEW OUR Service
+            </div>
+          </Link>
           <Icon className="text-white" icon="bxs:right-arrow" />
         </div>
       </div>

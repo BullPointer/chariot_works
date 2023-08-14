@@ -11,66 +11,32 @@ export const moreList = [
 
 export const navData = [
     {
-        text: "WORK",
-        link: "/",
-        list: [
-            {
-                text: "Ceiling",
-                link: "/"
-            },
-            {
-                text: "Cleaning",
-                link: "/"
-            },
-            {
-                text: "Ceiling",
-                link: "/"
-            },
-            {
-                text: "Cleaning",
-                link: "/"
-            },
-            {
-                text: "Ceiling",
-                link: "/"
-            },
-            {
-                text: "Cleaning",
-                link: "/"
-            },
-            {
-                text: "Ceiling",
-                link: "/"
-            },
-            {
-                text: "Cleaning",
-                link: "/"
-            },
-        ]
+        text: "SHOP",
+        link: "/shop",
     },
     {
         text: "SERVICES",
-        link: "/",
+        link: "/service",
         list: [
             {
                 text: "Gypsum suspended P.O.P installation",
-                link: "/"
+                link: "/service/gypsum-installation"
             },
             {
                 text: "Direct Plaster of Paris Mould Installation",
-                link: "/"
+                link: "/service/plaster-installation"
             },
             {
                 text: "Screeding",
-                link: "/"
+                link: "/service/screeding"
             },
             {
                 text: "General house cleaning",
-                link: "/"
+                link: "/service/house-cleaning"
             },
             {
                 text: "Painting and cement art work",
-                link: "/"
+                link: "/service/art-work"
             },
         ]
     },

@@ -20,7 +20,7 @@ const BigNavbar = () => {
           key={index}
           className="relative text-[#21471c] hover:text-[#333232] hover:border-b-2 border-[#333232] px-2 text-[22px] font-[510] cursor-pointer"
         >
-          <NavLink className="py-2" to={data.link}>
+          <NavLink className="py-2 text-[18px]" to={data.link}>
             {data.text}
           </NavLink>
           <ul className="absolute left-0 top-8 pt-4 bg-white w-[300px] rounded-b-sm">

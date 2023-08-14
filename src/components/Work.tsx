@@ -5,6 +5,7 @@ import Img3 from "../../Images/work3.jpeg";
 import GetInTouch from "./GetInTouch";
 import ViewService from "./ViewService";
 import ViewWork from "./ViewWork";
+import Testimonials from "./Testimonials";
 
 const Work = () => {
   return (
@@ -31,6 +32,7 @@ const Work = () => {
           <Icon className="text-[#21471c]" icon="bxs:right-arrow" />
         </div>
         <ViewService />
+        <Testimonials />
         <ViewWork />
         <GetInTouch />
       </div>

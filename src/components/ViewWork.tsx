@@ -1,4 +1,6 @@
 import { Icon } from "@iconify/react";
+import { footerSocialMediaList } from "../footer/footerlist";
+import { Link } from "react-router-dom";
 
 const ViewWork = () => {
   return (
@@ -11,19 +13,14 @@ const ViewWork = () => {
       </div>
       <div className="text-[20px] text-white font-bold">SOCIALIZE WITH US</div>
       <div className="flex flex-row justify-center items-center gap-3">
-        {[
-          "formkit:twitter",
-          "ic:sharp-facebook",
-          "fa:instagram",
-          "et:linkedin",
-          "formkit:whatsapp",
-        ].map((list, index) => (
-          <Icon
-            key={index}
-            className="text-white cursor-pointer"
-            icon={list}
-            fontSize={30}
-          />
+        {footerSocialMediaList?.map(({ link, logo }, index) => (
+          <Link to={link} key={index}>
+            <Icon
+              className="text-white cursor-pointer"
+              icon={logo}
+              fontSize={30}
+            />
+          </Link>
         ))}
       </div>
     </div>
