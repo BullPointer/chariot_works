@@ -7,6 +7,10 @@ import { NotFound } from "./components/NotFound";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import Service from "./pages/Service";
 import GypsumInstallation from "./components/GypsumInstallation";
+import PlasterInstallation from "./components/PlasterInstallation";
+import Screeding from "./components/Screeding";
+import HouseCleaning from "./components/HouseCleaning";
+import ArtWork from "./components/ArtWork";
 
 const App = () => {
   const handleScrollTo = () =>
@@ -22,14 +26,30 @@ const App = () => {
     <Routes>
       <Route path="*" element={<NotFound />} />
       <Route path="/" element={<Home />} />
-      <Route path="/contact-us" element={<ContactUs />} />
-      <Route path="/service" element={<Service />} />
+      <Route path="contact-us" element={<ContactUs />} />
+      <Route path="service" element={<Service />} />
       <Route
-        path="/service/gypsum-installation"
+        path="service/gypsum-installation"
         element={<GypsumInstallation />}
       />
-      <Route path="/about-us" element={<AboutUs />} />
-      <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+      <Route
+        path="service/plaster-installation"
+        element={<PlasterInstallation />}
+      />
+      <Route
+        path="service/screeding"
+        element={<Screeding />}
+      />
+      <Route
+        path="service/house-cleaning"
+        element={<HouseCleaning />}
+      />
+      <Route
+        path="service/art-work"
+        element={<ArtWork />}
+      />
+      <Route path="about-us" element={<AboutUs />} />
+      <Route path="privacy-policy" element={<PrivacyPolicy />} />
     </Routes>
   );
 };

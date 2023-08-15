@@ -7,35 +7,31 @@ import Footer from "../footer/Footer";
 import Navbar from "../navbar/Navbar";
 import GetInTouch from "./GetInTouch";
 
-const GypsumInstallation = () => {
+const ArtWork = () => {
   return (
     <div className="relative min-h-screen">
       <Navbar />
       <div className="">
         <div className="py-10">
           <div className="pt-20 px-4 lg:px-36 text-[18px] xs:text-[20px] lg:text-[25px] text-center">
-            GYPSUM SUSPENDED P.O.P INSTALLATION
+            PAINTING AND CEMENT ART WORK
           </div>
           <div className="text-[17px] sm:text-[19px] px-5 sm:px-10 pt-5 pb-2 text-center sm:text-left">
-            An enchanting realm of Gypsum Suspended P.O.P Installation, where
-            innovation and expertise converge to redefine interior spaces. Our
-            journey unfolds as we seamlessly blend the versatility of gypsum
-            with the intricate artistry of suspended plaster of Paris, crafting
-            suspended ceilings that are as functional as they are visually
-            captivating.
+            We akin to texture architects, layer colors and cement to craft
+            murals and sculptures that transcend convention. From captivating
+            murals breathing life into spaces to intricate cement designs
+            inviting tactile exploration, our creations embody the very essence
+            of artistic versatility.
           </div>
           <div className="text-[17px] sm:text-[19px] px-5 sm:px-10 pt-5 pb-2 text-center sm:text-left">
-            We are more than artisans; we are architects of ambiance. With a
-            fusion of cutting-edge techniques and timeless craftsmanship, each
-            suspended ceiling becomes a testament to the seamless marriage of
-            aesthetics and practicality.
-          </div>
-          <div className="text-[17px] sm:text-[19px] px-5 sm:px-10 pt-5 pb-2 text-center sm:text-left">
-            Our craftsmen, like modern sculptors, mold gypsum into stunning
-            suspended masterpieces that transcend the conventional. From
-            minimalist designs that exude contemporary elegance to intricate
-            patterns that pay homage to classical aesthetics, our creations
-            embody the essence of versatility.
+            Yet, our commitment reaches beyond aesthetics; it's about evoking
+            emotion. Our artistry isn't just an embellishment; it's a language,
+            speaking volumes through every shade, every pattern, and every
+            texture. We partner closely with you, comprehending your artistic
+            vision, embracing your design desires, and infusing your
+            surroundings with a symphony of colors and textures that narrate
+            your story. Our collaborations aren't transactions; they're
+            co-creations that give life to your artistic aspirations.
           </div>
         </div>
         <div className="w-full bg-[#070707] px-0 py-10 md:p-10">
@@ -67,16 +63,12 @@ const GypsumInstallation = () => {
         </div>
         <div className="w-full bg-black px-2 md:px-36 py-10">
           <div className="text-white text-center text-[18px] xs:text-[20px] lg:text-[22px] ">
-            With unwavering dedication, we collaborate closely with you,
-            understanding your spatial needs, embracing your design aspirations,
-            and weaving functionality into every suspended masterpiece. Our
-            consultations aren't just discussions; they're creative
-            collaborations that give life to your ideas and form to your vision.
-          </div>
-          <div className="text-white text-center text-[18px] xs:text-[20px] lg:text-[22px] ">
-            Embark on a journey with us to redefine interiors from the top down
-            and experience the magic of suspended ceilings that defy
-            expectations.
+            Our service to you goes beyond being a service; it's an enclave of
+            creativity, a sanctuary for self-expression, and a destination for
+            those who yearn to enliven their spaces with the magic of painting
+            and cement artistry. Embark with us on a journey to redefine your
+            surroundings and immerse yourself in the fusion of hues and textures
+            that redefine living spaces.
           </div>
         </div>
         <div className="w-full">
@@ -102,4 +94,4 @@ const GypsumInstallation = () => {
   );
 };
 
-export default GypsumInstallation;
+export default ArtWork;

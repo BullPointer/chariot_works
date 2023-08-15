@@ -15,7 +15,7 @@ const Navbar = () => {
         className="flex flex-row justify-center items-center gap-2 cursor-pointer p-2"
       >
         <img className="w-12 h-12" src={Logo} alt="" />
-        <div className="font-bold text:xl sm:text-2xl lg:text-4xl text-[#21471c]">
+        <div className="font-bold text:xl sm:text-2xl lg:text-3xl text-[#1a201a]">
           CHARIOT WORKS
         </div>
       </NavLink>

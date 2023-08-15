@@ -7,35 +7,27 @@ import Footer from "../footer/Footer";
 import Navbar from "../navbar/Navbar";
 import GetInTouch from "./GetInTouch";
 
-const GypsumInstallation = () => {
+const HouseCleaning = () => {
   return (
     <div className="relative min-h-screen">
       <Navbar />
       <div className="">
         <div className="py-10">
           <div className="pt-20 px-4 lg:px-36 text-[18px] xs:text-[20px] lg:text-[25px] text-center">
-            GYPSUM SUSPENDED P.O.P INSTALLATION
+            GENERAL HOUSE CLEANING
           </div>
           <div className="text-[17px] sm:text-[19px] px-5 sm:px-10 pt-5 pb-2 text-center sm:text-left">
-            An enchanting realm of Gypsum Suspended P.O.P Installation, where
-            innovation and expertise converge to redefine interior spaces. Our
-            journey unfolds as we seamlessly blend the versatility of gypsum
-            with the intricate artistry of suspended plaster of Paris, crafting
-            suspended ceilings that are as functional as they are visually
-            captivating.
+            Like choreographers of order, choreographs a symphony of
+            cleanliness, ensuring every nook and cranny is free from the grasp
+            of dust and clutter. From immaculate kitchens that invite culinary
+            creativity to flawlessly organized living spaces that encourage
+            relaxation, our cleaning expertise encapsulates the essence of a
+            well-balanced home.
           </div>
-          <div className="text-[17px] sm:text-[19px] px-5 sm:px-10 pt-5 pb-2 text-center sm:text-left">
-            We are more than artisans; we are architects of ambiance. With a
-            fusion of cutting-edge techniques and timeless craftsmanship, each
-            suspended ceiling becomes a testament to the seamless marriage of
-            aesthetics and practicality.
-          </div>
-          <div className="text-[17px] sm:text-[19px] px-5 sm:px-10 pt-5 pb-2 text-center sm:text-left">
-            Our craftsmen, like modern sculptors, mold gypsum into stunning
-            suspended masterpieces that transcend the conventional. From
-            minimalist designs that exude contemporary elegance to intricate
-            patterns that pay homage to classical aesthetics, our creations
-            embody the essence of versatility.
+          <div className="text-[17px] sm:text-[19px] px-5 sm:px-10 py-2 text-center sm:text-left">
+            Our journey revolves around elevating the everyday by meticulously
+            curating cleanliness, so you can revel in the tranquility of a
+            spotless home.
           </div>
         </div>
         <div className="w-full bg-[#070707] px-0 py-10 md:p-10">
@@ -67,16 +59,13 @@ const GypsumInstallation = () => {
         </div>
         <div className="w-full bg-black px-2 md:px-36 py-10">
           <div className="text-white text-center text-[18px] xs:text-[20px] lg:text-[22px] ">
-            With unwavering dedication, we collaborate closely with you,
-            understanding your spatial needs, embracing your design aspirations,
-            and weaving functionality into every suspended masterpiece. Our
-            consultations aren't just discussions; they're creative
-            collaborations that give life to your ideas and form to your vision.
-          </div>
-          <div className="text-white text-center text-[18px] xs:text-[20px] lg:text-[22px] ">
-            Embark on a journey with us to redefine interiors from the top down
-            and experience the magic of suspended ceilings that defy
-            expectations.
+            With an unwavering commitment, we collaborate closely with you,
+            understanding your preferences, embracing your schedule, and
+            tailoring our services to your unique needs. Our sessions aren't
+            just cleanings; they're transformative experiences that reinvigorate
+            your living spaces and enhance your quality of life. Therefore, embark on a
+            journey with us to redefine cleanliness as an art form and bask in
+            the bliss of harmonious living.
           </div>
         </div>
         <div className="w-full">
@@ -102,4 +91,4 @@ const GypsumInstallation = () => {
   );
 };
 
-export default GypsumInstallation;
+export default HouseCleaning;

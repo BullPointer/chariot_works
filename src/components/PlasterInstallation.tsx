@@ -7,35 +7,32 @@ import Footer from "../footer/Footer";
 import Navbar from "../navbar/Navbar";
 import GetInTouch from "./GetInTouch";
 
-const GypsumInstallation = () => {
+const PlasterInstallation = () => {
   return (
     <div className="relative min-h-screen">
       <Navbar />
       <div className="">
         <div className="py-10">
           <div className="pt-20 px-4 lg:px-36 text-[18px] xs:text-[20px] lg:text-[25px] text-center">
-            GYPSUM SUSPENDED P.O.P INSTALLATION
+            DIRECT PLASTER OF PARIS MOULD INSTALLATION
           </div>
           <div className="text-[17px] sm:text-[19px] px-5 sm:px-10 pt-5 pb-2 text-center sm:text-left">
-            An enchanting realm of Gypsum Suspended P.O.P Installation, where
-            innovation and expertise converge to redefine interior spaces. Our
-            journey unfolds as we seamlessly blend the versatility of gypsum
-            with the intricate artistry of suspended plaster of Paris, crafting
-            suspended ceilings that are as functional as they are visually
-            captivating.
+            We are guardians of tradition, preserving the legacy of ornamental
+            design with a modern twist. Through a blend of age-old techniques
+            and contemporary creativity, each plaster mould is a testament to
+            the seamless blend of heritage and innovation.
           </div>
-          <div className="text-[17px] sm:text-[19px] px-5 sm:px-10 pt-5 pb-2 text-center sm:text-left">
-            We are more than artisans; we are architects of ambiance. With a
-            fusion of cutting-edge techniques and timeless craftsmanship, each
-            suspended ceiling becomes a testament to the seamless marriage of
-            aesthetics and practicality.
-          </div>
-          <div className="text-[17px] sm:text-[19px] px-5 sm:px-10 pt-5 pb-2 text-center sm:text-left">
-            Our craftsmen, like modern sculptors, mold gypsum into stunning
-            suspended masterpieces that transcend the conventional. From
-            minimalist designs that exude contemporary elegance to intricate
-            patterns that pay homage to classical aesthetics, our creations
-            embody the essence of versatility.
+          <div className="text-[17px] sm:text-[19px] px-5 sm:px-10 py-2 text-center sm:text-left">
+            Our skilled craftsmen, akin to sculptors of antiquity, breathe life
+            into plaster of Paris, creating intricate mouldings that transcend
+            time. From intricate cornices that crown a room with regal charm to
+            delicate friezes that whisper tales of opulence, our creations
+            capture the essence of architectural splendor. Yet, our dedication
+            extends beyond aesthetics; it's about narrative. Our mould
+            installations don't just embellish; they tell stories of eras gone
+            by, adding character and depth to spaces. Each curve, each motif,
+            and each detail reflects the passion and precision woven into our
+            craft.
           </div>
         </div>
         <div className="w-full bg-[#070707] px-0 py-10 md:p-10">
@@ -67,16 +64,18 @@ const GypsumInstallation = () => {
         </div>
         <div className="w-full bg-black px-2 md:px-36 py-10">
           <div className="text-white text-center text-[18px] xs:text-[20px] lg:text-[22px] ">
-            With unwavering dedication, we collaborate closely with you,
-            understanding your spatial needs, embracing your design aspirations,
-            and weaving functionality into every suspended masterpiece. Our
-            consultations aren't just discussions; they're creative
-            collaborations that give life to your ideas and form to your vision.
+            With an unwavering commitment, we collaborate closely with you,
+            understanding your design aspirations, embracing your architectural
+            vision, and infusing history into every mould installation. Our
+            consultations aren't mere discussions; they're creative dialogues
+            that shape your space's character and ambiance.
           </div>
           <div className="text-white text-center text-[18px] xs:text-[20px] lg:text-[22px] ">
-            Embark on a journey with us to redefine interiors from the top down
-            and experience the magic of suspended ceilings that defy
-            expectations.
+            Step into the world , where timeless craftsmanship meets
+            architectural elegance. Our journey is one of transforming spaces
+            into living works of art through the meticulous artistry of direct
+            mould installation using plaster of Paris, bringing a touch of
+            history and sophistication to every corner.
           </div>
         </div>
         <div className="w-full">
@@ -102,4 +101,4 @@ const GypsumInstallation = () => {
   );
 };
 
-export default GypsumInstallation;
+export default PlasterInstallation;

@@ -5,15 +5,18 @@ import Img2 from "../../../Images/welcome2.jpg";
 export const Images = [
     {
         img: Img,
-        text: "Outstanding service offering"
+        text: "Outstanding service offering",
+        link: "/service/house-cleaning"
     },
     {
         img: Img1,
-        text: "Outstanding outcome"
+        text: "Outstanding outcome",
+        link: "/service/screeding"
     },
     {
         img: Img2,
-        text: "Outstanding design"
+        text: "Outstanding design",
+        link: "/service/gypsum-installation"
     },
 
 ];
