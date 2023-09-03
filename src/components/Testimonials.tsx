@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Icon } from "@iconify/react";
 import Img1 from "../../Images/testimonial1.jpeg";
 import Img2 from "../../Images/testimonial2.jpeg";
+import Img3 from "../../Images/testimonial3.jpeg";
 
 const testimonialData = [
   {
@@ -15,7 +16,7 @@ const testimonialData = [
       </p>
     ),
     name: "Kazeem",
-    about: "CEO, Junkin stuff",
+    about: "Manager, Junkin stuff",
   },
   {
     img: Img2,
@@ -29,21 +30,19 @@ const testimonialData = [
       </p>
     ),
     name: "Bukky",
-    about: "CEO, Junkin stuff",
+    about: "Entrepreneur, Junkin stuff",
   },
   {
-    img: Img1,
+    img: Img3,
     text: (
       <p>
-        So I went to a clothing shop to do some shopping on entry the shop I was
-        marveled by the beauty of the interior works especially the P.O.P works
-        so I collected your contact from the shop owner. I gave you my baby
-        items super market to renovate for me, from the P.O.P ceiling, the
-        painting and to the cleaning very impressive
+        As an engineer the core qualities I always look out for in artisans is
+        commitment and dedication to work. I have found that in your team. So
+        far the Chariot company is sure the company for my works....Keep it up!
       </p>
     ),
-    name: "Hazan",
-    about: "CEO, Junkin stuff",
+    name: "Isaiah",
+    about: "Engineer, Junkin stuff",
   },
 ];
 

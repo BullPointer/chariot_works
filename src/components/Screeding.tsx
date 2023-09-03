@@ -1,5 +1,5 @@
-import Img1 from "../../Images/gypsumImg/before.jpeg";
-import Img2 from "../../Images/gypsumImg/after.jpeg";
+import Img1 from "../../Images/screedingImg/before.jpeg";
+import Img2 from "../../Images/screedingImg/after.jpeg";
 import galary1 from "../../Images/gypsumImg/galary1.jpeg";
 import galary2 from "../../Images/gypsumImg/galary2.jpeg";
 import galary3 from "../../Images/gypsumImg/galary3.jpeg";

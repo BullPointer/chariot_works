@@ -1,8 +1,6 @@
-import Img1 from "../../Images/gypsumImg/before.jpeg";
-import Img2 from "../../Images/gypsumImg/after.jpeg";
-import galary1 from "../../Images/gypsumImg/galary1.jpeg";
-import galary2 from "../../Images/gypsumImg/galary2.jpeg";
-import galary3 from "../../Images/gypsumImg/galary3.jpeg";
+import Img1 from "../../Images/cleaningImg/img1.jpg";
+import Img2 from "../../Images/cleaningImg/img2.jpg";
+import Img3 from "../../Images/cleaningImg/img3.jpeg";
 import Footer from "../footer/Footer";
 import Navbar from "../navbar/Navbar";
 import GetInTouch from "./GetInTouch";
@@ -34,28 +32,7 @@ const HouseCleaning = () => {
           <div className="text-center text-[22px] xs:text-[26px] lg:text-[35px] text-white">
             Featured Projects
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 ">
-            <div className="flex flex-col items-center justify-between px-2 py-5 md:p-5">
-              <div className="text-[32px] font-bold text-white">Before</div>
-              <div className="w-full h-[400px]">
-                <img
-                  className="w-full h-[100%] object-cover rounded-xl"
-                  src={Img1}
-                  alt=""
-                />
-              </div>
-            </div>
-            <div className="flex flex-col items-center justify-between px-2 py-5 md:p-5">
-              <div className="text-[32px] font-bold text-white">After</div>
-              <div className="w-full h-[400px]">
-                <img
-                  className="w-full h-[100%] object-cover rounded-xl"
-                  src={Img2}
-                  alt=""
-                />
-              </div>
-            </div>
-          </div>
+          
         </div>
         <div className="w-full bg-black px-2 md:px-36 py-10">
           <div className="text-white text-center text-[18px] xs:text-[20px] lg:text-[22px] ">
@@ -73,7 +50,7 @@ const HouseCleaning = () => {
             GALLERY
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-0 max-h-fit mb-10 ">
-            {[galary1, galary2, galary3].map((img, index) => (
+            {[Img1, Img2, Img3].map((img, index) => (
               <div key={index} className="w-full h-[50%] px-[22px]">
                 <img
                   className="w-full h-[300px] object-cover rounded-xl"
