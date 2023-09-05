@@ -15,7 +15,7 @@ const List = ({ setShow }: SmallNavbarProps) => {
       {navData.map((item, index) => (
         <div
           key={index}
-          className="text-[#21471c] hover:text-[#333232] hover:border-b-2 border-[#333232] first:pt-10 px-6 text-[22px] font-[510] cursor-pointer"
+          className="text-[#161531] hover:text-[#333232] hover:border-b-2 border-[#333232] first:pt-10 px-6 text-[22px] font-[510] cursor-pointer"
         >
           <div className="flex flex-row justify-start items-center gap-2">
             <NavLink onClick={() => setShow(false)} to={item.link}>
@@ -60,7 +60,7 @@ const List = ({ setShow }: SmallNavbarProps) => {
           </ul>
         )}
       </div>
-      <div className="text-[#21471c] cursor-pointer px-6">
+      <div className="text-[#161531] cursor-pointer px-6">
         <Icon icon="teenyicons:search-outline" fontSize={20} />
       </div>
     </>

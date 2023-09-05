@@ -11,6 +11,7 @@ import PlasterInstallation from "./components/PlasterInstallation";
 import Screeding from "./components/Screeding";
 import HouseCleaning from "./components/HouseCleaning";
 import ArtWork from "./components/ArtWork";
+import Shop from "./pages/Shop";
 
 const App = () => {
   const handleScrollTo = () =>
@@ -26,6 +27,9 @@ const App = () => {
     <Routes>
       <Route path="*" element={<NotFound />} />
       <Route path="/" element={<Home />} />
+      <Route path="shop" element={<Shop />} >
+
+      </Route>
       <Route path="contact-us" element={<ContactUs />} />
       <Route path="service" element={<Service />} />
       <Route

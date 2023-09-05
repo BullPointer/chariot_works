@@ -26,10 +26,10 @@ const Work = () => {
       </div>
       <div>
         <div className="flex flex-row gap-2 justify-center items-center px-3 pt-8 pb-14 cursor-pointer">
-          <div className="text-xl font-semibold text-[#21471c]">
+          <div className="text-xl font-semibold text-[#161531]">
             VIEW OUR WORK
           </div>
-          <Icon className="text-[#21471c]" icon="bxs:right-arrow" />
+          <Icon className="text-[#161531]" icon="bxs:right-arrow" />
         </div>
         <ViewService />
         <Testimonials />

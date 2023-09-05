@@ -7,7 +7,7 @@ const Footer = () => {
   const commonStyle = "flex flex-row justify-center items-center ";
   return (
     <div
-      className={`flex flex-col-reverse lg:flex-row justify-evenly items-center gap-2 bg-black py-10`}
+      className={`flex flex-col-reverse lg:flex-row justify-evenly items-center gap-2  bg-[#0e0d1f] py-10`}
     >
       <div className="flex flex-row justify-center items-center gap-2 cursor-pointer">
         <img className="w-6 h-6 sm:w-12 sm:h-12" src={Logo} alt="" />

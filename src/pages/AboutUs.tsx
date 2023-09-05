@@ -91,7 +91,7 @@ const AboutUs = () => {
         <img className="h-screen min-w-full object-cover" src={Img} alt="" />
       </div>
 
-      <div className="w-full grid grid-cols-1 lg:grid-cols-3 gap-3 h-auto lg:h-60 bg-[#849e81]">
+      <div className="w-full grid grid-cols-1 lg:grid-cols-3 gap-3 h-auto lg:h-60 bg-[#161531]">
         {cardObj.map(({ text, num }, index) => (
           <div
             key={index}

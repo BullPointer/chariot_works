@@ -18,7 +18,7 @@ const BigNavbar = () => {
           onClick={() => setHoveredIndex(index)}
           onMouseEnter={() => setHoveredIndex(index)}
           key={index}
-          className="relative text-[#21471c] hover:text-[#333232] hover:border-b-2 border-[#333232] px-2 text-[22px] font-[510] cursor-pointer"
+          className="relative text-[#161531] hover:text-[#333232] hover:border-b-2 border-[#333232] px-2 text-[22px] font-[510] cursor-pointer"
         >
           <NavLink className="py-2 text-[18px]" to={data.link}>
             {data.text}
@@ -28,7 +28,7 @@ const BigNavbar = () => {
               data?.list?.map((item, i) => (
                 <li
                   key={i}
-                  className="text-[16px] font-bold text-[#21471c] py-1 px-2 hover:text-white hover:bg-[#21471c]"
+                  className="text-[16px] font-bold text-[#161531] py-1 px-2 hover:text-white hover:bg-[#161531]"
                 >
                  <Link to={item.link}>  {item.text.toUpperCase()} </Link>
                 </li>
@@ -42,7 +42,7 @@ const BigNavbar = () => {
       >
         <div
           onMouseEnter={() => setMore(true)}
-          className="relative text-[#21471c] cursor-pointer hover:text-[#333232] hover:border-b-2 border-[#333232] px-2"
+          className="relative text-[#161531] cursor-pointer hover:text-[#333232] hover:border-b-2 border-[#333232] px-2"
         >
           <NavLink className="py-8" to={"/"}>
             <Icon icon="pepicons-pop:dots-x" />
@@ -52,14 +52,14 @@ const BigNavbar = () => {
               moreList?.map((item, i) => (
                 <li
                   key={i}
-                  className="text-[16px] font-bold text-[#21471c] py-1 px-2 hover:text-white hover:bg-[#21471c]"
+                  className="text-[16px] font-bold text-[#161531] py-1 px-2 hover:text-white hover:bg-[#161531]"
                 >
                   <Link to={item.link}> {item.text.toUpperCase()}</Link>
                 </li>
               ))}
           </ul>
         </div>
-        <div className="relative text-[#21471c] cursor-pointer">
+        <div className="relative text-[#161531] cursor-pointer">
           <Icon icon="teenyicons:search-outline" fontSize={20} />
         </div>
       </div>

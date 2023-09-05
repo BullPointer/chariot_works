@@ -67,23 +67,23 @@ const Testimonials = () => {
               </div>
               <div className="flex flex-row justify-center items-center gap-2 text-white">
                 <Icon
-                  className="text-green-500 text-[18px]"
+                  className="text-[#6e6bc4] text-[18px]"
                   icon="fluent:star-24-filled"
                 />
                 <Icon
-                  className="text-green-500 text-[18px]"
+                  className="text-[#6e6bc4] text-[18px]"
                   icon="fluent:star-24-filled"
                 />
                 <Icon
-                  className="text-green-500 text-[18px]"
+                  className="text-[#6e6bc4] text-[18px]"
                   icon="fluent:star-24-filled"
                 />
                 <Icon
-                  className="text-green-500 text-[18px]"
+                  className="text-[#6e6bc4] text-[18px]"
                   icon="fluent:star-24-filled"
                 />
                 <Icon
-                  className="text-green-500 text-[18px]"
+                  className="text-[#6e6bc4] text-[18px]"
                   icon="fluent:star-24-filled"
                 />
               </div>
@@ -111,7 +111,7 @@ const Testimonials = () => {
             onClick={() => setCurrentIndex(index)}
             key={index}
             className={` w-3 h-3 rounded-full cursor-pointer ${
-              currentIndex === index ? "bg-green-500" : "bg-[#3a3838]"
+              currentIndex === index ? "bg-[#6e6bc4]" : "bg-[#3a3838]"
             }`}
           />
         ))}

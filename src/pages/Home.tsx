@@ -51,7 +51,7 @@ const Home = () => {
   return (
     <div className="relative min-h-screen">
       <Navbar />
-      <Welcome />
+      <Welcome /> 
       <About />
       <Work />
       <Footer />

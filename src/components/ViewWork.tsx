@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const ViewWork = () => {
   return (
-    <div className="flex flex-col justify-center items-center gap-2 bg-[#849e81] px-8 sm:px-32 py-10">
+    <div className="flex flex-col justify-center items-center gap-2 bg-[#161531] px-8 sm:px-32 py-10">
       <div className="text-3xl lg:text-5xl pb-3 text-white text-center px-10 sm:px-0">
         See How We Relate on Social Media Platforms
       </div>

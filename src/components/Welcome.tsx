@@ -37,12 +37,12 @@ const Welcome = () => {
               alt=""
             />
             <div className="absolute bg-[#9aa596] left-0 top-[50%] bg-transparent w-full p-4 flex flex-col justify-center items-center gap-2">
-              <div className=" p-2 text-xl sm:text-4xl font-medium text-white">
+              <div className=" p-2 text-xl sm:text-4xl font-[700] text-[#2f2f36]">
                 {text.toUpperCase()}
               </div>
               <Link to={link}>
                 {" "}
-                <div className="bg-green-400 hover:bg-green-800 px-4 py-1 sm:py-2 cursor-pointer rounded-full text-white font-bold">
+                <div className="bg-[#161531] hover:bg-[#0e0d1f] px-4 py-1 sm:py-2 cursor-pointer rounded-full text-white font-bold">
                   Learn More
                 </div>
               </Link>
