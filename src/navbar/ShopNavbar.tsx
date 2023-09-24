@@ -3,6 +3,7 @@ import { Icon } from "@iconify/react";
 import { categories, rightCategory } from "./ShopNavDummyData";
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
+import { useAddtoCartContext } from "../context/AddToCartContext";
 
 const Navbar = () => {
   const commonFlexStyle = "flex flex-row items-center";
@@ -27,6 +28,8 @@ const Navbar = () => {
     return () =>
       document.removeEventListener("click", clickEventListener as any);
   }, []);
+
+  const { cartCount } = useAddtoCartContext();
 
   return (
     <div>
@@ -95,7 +98,8 @@ const Navbar = () => {
         <div
           className={`${commonFlexStyle} gap-1  w-[30%] md:w-[20%] justify-start`}
         >
-          <div
+          <Link
+            to={"/shop/view_cart"}
             className={`relative ${commonFlexStyle} backdrop-filter justify-center w-10 h-10 rounded-full bg-[#ffffff73]`}
           >
             <Icon
@@ -105,9 +109,9 @@ const Navbar = () => {
             <div
               className={`${commonFlexStyle} justify-center absolute w-5 h-5 -right-2 -top-2 bg-white rounded-full text-[10px] font-bold`}
             >
-              0
+              {cartCount}
             </div>
-          </div>
+          </Link>
           <div className="text-[#333c53] font-semibold">Cart</div>
         </div>
       </div>

@@ -12,6 +12,12 @@ import Screeding from "./components/Screeding";
 import HouseCleaning from "./components/HouseCleaning";
 import ArtWork from "./components/ArtWork";
 import Shop from "./pages/Shop";
+import MainShop from "./components/shop/MainShop";
+import ProductDetails from "./components/shop/ProductDetails";
+import ViewProducts from "./components/shop/ViewProducts";
+import ShoppingCart from "./components/shop/ShoppingCart";
+import Checkout from "./components/shop/Checkout";
+import { getAddToCartUUID, setAddToCartUUID } from "./handleApi/handleCookie";
 
 const App = () => {
   const handleScrollTo = () =>
@@ -23,12 +29,27 @@ const App = () => {
     return () => window.removeEventListener("load", handleScrollTo);
   }, []);
 
+  useEffect(() => {
+    const cartId = getAddToCartUUID();
+    console.log(cartId);
+
+    if (!cartId) {
+      setAddToCartUUID();
+    } else {
+      console.log(cartId);
+    }
+  }, []);
+
   return (
     <Routes>
       <Route path="*" element={<NotFound />} />
       <Route path="/" element={<Home />} />
-      <Route path="shop" element={<Shop />} >
-
+      <Route path="shop" element={<Shop />}>
+        <Route index element={<MainShop />} />
+        <Route path="products/product-details" element={<ProductDetails />} />
+        <Route path="products/:feature" element={<ViewProducts />} />
+        <Route path="view_cart" element={<ShoppingCart />} />
+        <Route path="handler/order" element={<Checkout />} />
       </Route>
       <Route path="contact-us" element={<ContactUs />} />
       <Route path="service" element={<Service />} />
@@ -40,18 +61,9 @@ const App = () => {
         path="service/plaster-installation"
         element={<PlasterInstallation />}
       />
-      <Route
-        path="service/screeding"
-        element={<Screeding />}
-      />
-      <Route
-        path="service/house-cleaning"
-        element={<HouseCleaning />}
-      />
-      <Route
-        path="service/art-work"
-        element={<ArtWork />}
-      />
+      <Route path="service/screeding" element={<Screeding />} />
+      <Route path="service/house-cleaning" element={<HouseCleaning />} />
+      <Route path="service/art-work" element={<ArtWork />} />
       <Route path="about-us" element={<AboutUs />} />
       <Route path="privacy-policy" element={<PrivacyPolicy />} />
     </Routes>
