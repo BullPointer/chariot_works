@@ -12,10 +12,10 @@ export const categories =
 
 export const rightCategory =
     [
-        { cat: "Shop", link: "/shop" },
-        { cat: "All Category", link: "products/all-category" },
-        { cat: "New Products", link: "products/new-products" },
-        { cat: "Featured Products", link: "products/featured-products" },
-        { cat: "Hot Products", link: "products/hot-products" },
+        { cat: "Shop", link: "/shop", feature: "" },
+        { cat: "All Category", link: "products/all-category", feature: "All Category" },
+        { cat: "New Products", link: "products/new-products", feature: "New Product" },
+        { cat: "Featured Products", link: "products/featured-products", feature: "Featured Product" },
+        { cat: "Hot Products", link: "products/hot-products", feature: "Hot Product" },
     ]
 

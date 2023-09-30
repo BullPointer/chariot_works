@@ -2,8 +2,8 @@ import { Icon } from "@iconify/react";
 
 const Slogan = () => {
   return (
-    <div className="grid grid-cols-3 bg-[#161531] border-b-4 border-b-black">
-      <div className="flex flex-row justify-center items-center gap-3 p-5">
+    <div className="grid grid-cols-1 sm:grid-cols-3 bg-[#161531] border-b-4 border-b-black">
+      <div className="flex flex-row justify-start sm:justify-center items-center gap-3 p-5">
         <div className="text-white bg-green-500 rounded-full p-2 border-white border">
           <Icon className="text-white text-[40px]" icon="foundation:dollar" />
         </div>
@@ -17,7 +17,7 @@ const Slogan = () => {
           </div>
         </div>
       </div>
-      <div className="flex flex-row justify-center items-center gap-3 p-5">
+      <div className="flex flex-row justify-start sm:justify-center items-center gap-3 p-5">
         <div className="text-white bg-green-500 rounded-full p-2 border-white border">
           <Icon
             className="text-white text-[40px]"
@@ -31,7 +31,7 @@ const Slogan = () => {
           </div>
         </div>
       </div>
-      <div className="flex flex-row justify-center items-center gap-3 p-5">
+      <div className="flex flex-row justify-start sm:justify-center items-center gap-3 p-5">
         <div className="text-white bg-green-500 rounded-full p-2 border-white border">
           <Icon className="text-white text-[40px]" icon="bx:support" />
         </div>

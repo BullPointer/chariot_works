@@ -37,7 +37,7 @@ const Welcome = () => {
               alt=""
             />
             <div className="absolute bg-[#9aa596] left-0 top-[50%] bg-transparent w-full p-4 flex flex-col justify-center items-center gap-2">
-              <div className=" p-2 text-xl sm:text-4xl font-[700] text-[#2f2f36]">
+              <div className="bg-[#8293e6] rounded-sm border-b-4 border-b-[#161531] backdrop-blur-xl p-2 text-xl sm:text-4xl font-[700] text-[#2f2f36]">
                 {text.toUpperCase()}
               </div>
               <Link to={link}>

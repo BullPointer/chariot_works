@@ -25,3 +25,16 @@ export const setAddToCartUUID = async () => {
     // document.cookie = `crt_uuid=${crt_uuid};expires=${expires.toUTCString()};path=/`;
 
 }
+
+export const getRequestedCookie = (key: string) => {
+    const cookies = document.cookie.split(";");
+
+    for (let index = 0; index < cookies.length; index++) {
+
+        if (cookies[index].trim().startsWith(key + "=")) {
+            return cookies[index].trim().substring(key.length + 1);
+        }
+    }
+    return null;
+}
+

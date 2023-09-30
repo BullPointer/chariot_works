@@ -18,6 +18,9 @@ import ViewProducts from "./components/shop/ViewProducts";
 import ShoppingCart from "./components/shop/ShoppingCart";
 import Checkout from "./components/shop/Checkout";
 import { getAddToCartUUID, setAddToCartUUID } from "./handleApi/handleCookie";
+import { ProtectedRoutes } from "./utils/ProtectedRoutes";
+import SignIn from "./pages/SignIn";
+import SignUp from "./pages/SignUp";
 
 const App = () => {
   const handleScrollTo = () =>
@@ -44,12 +47,21 @@ const App = () => {
     <Routes>
       <Route path="*" element={<NotFound />} />
       <Route path="/" element={<Home />} />
+      <Route path="usr/sign-in" element={<SignIn />} />
+      <Route path="usr/sign-up" element={<SignUp />} />
       <Route path="shop" element={<Shop />}>
         <Route index element={<MainShop />} />
         <Route path="products/product-details" element={<ProductDetails />} />
         <Route path="products/:feature" element={<ViewProducts />} />
         <Route path="view_cart" element={<ShoppingCart />} />
-        <Route path="handler/order" element={<Checkout />} />
+        <Route
+          path="handler/order"
+          element={
+            <ProtectedRoutes>
+              <Checkout />
+            </ProtectedRoutes>
+          }
+        />
       </Route>
       <Route path="contact-us" element={<ContactUs />} />
       <Route path="service" element={<Service />} />

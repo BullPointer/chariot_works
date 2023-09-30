@@ -8,7 +8,7 @@ const Checkout = () => {
   const [showComponent, setShowComponent] = useState("address");
 
   return (
-    <div className="grid grid-cols-[1fr_35%]">
+    <div className="grid grid-cols-1 md:grid-cols-[1fr_35%]">
       <div className="relative w-full px-4 my-5">
         <Address
           showComponent={showComponent}

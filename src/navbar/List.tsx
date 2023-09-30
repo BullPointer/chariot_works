@@ -8,8 +8,16 @@ export type SmallNavbarProps = {
 };
 
 const List = ({ setShow }: SmallNavbarProps) => {
+  const token = localStorage.getItem("token");
   const [isOpen, setIsOpen] = useState<number | null>(null);
   const [showMore, setShowMore] = useState(false);
+
+  const handleLogout = () => {
+    setShow(false);
+    localStorage.removeItem("token");
+    window.location.reload();
+    console.log(token);
+  };
   return (
     <>
       {navData.map((item, index) => (
@@ -42,7 +50,21 @@ const List = ({ setShow }: SmallNavbarProps) => {
           )}
         </div>
       ))}
-
+      {token ? (
+        <div
+          onClick={handleLogout}
+          className="text-[#161531] hover:text-[#333232] hover:border-b-2 border-[#333232] first:pt-10 px-6 text-[22px] font-[510] cursor-pointer"
+        >
+          SIGN-OUT
+        </div>
+      ) : (
+        <NavLink
+          className="text-[#161531] hover:text-[#333232] hover:border-b-2 border-[#333232] first:pt-10 px-6 text-[22px] font-[510] cursor-pointer"
+          to={"/usr/sign-in"}
+        >
+          Sign-in
+        </NavLink>
+      )}
       <div className="text-[#21471c] cursor-pointer hover:text-[#333232] hover:border-b-2 border-[#333232] px-6">
         <Icon
           onClick={() => setShowMore(!showMore)}
@@ -52,9 +74,7 @@ const List = ({ setShow }: SmallNavbarProps) => {
           <ul className="">
             {moreList?.map(({ text, link }, index) => (
               <Link key={index} onClick={() => setShow(false)} to={link}>
-                <li className="border-b pl-5 text-lg">
-                  {text.toUpperCase()}
-                </li>
+                <li className="border-b pl-5 text-lg">{text.toUpperCase()}</li>
               </Link>
             ))}
           </ul>

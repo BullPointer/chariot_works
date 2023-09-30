@@ -1,22 +1,23 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Icon } from "@iconify/react";
 import { categories, rightCategory } from "./ShopNavDummyData";
 import { useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { useAddtoCartContext } from "../context/AddToCartContext";
 
 const Navbar = () => {
   const commonFlexStyle = "flex flex-row items-center";
-  const [leftList, setLeftList] = useState(false);
-  const [rightList, setRightList] = useState(false);
-  const ref = useRef<HTMLDivElement | null>(null);
+  const [list, setList] = useState("");
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const refContainer = useRef<HTMLDivElement[]>([]);
 
   useEffect(() => {
     const handleDetectBody = (e: React.MouseEvent<HTMLElement>) => {
-      const div = ref.current as HTMLElement | undefined;
-      if (div && !div.contains(e.target as Node)) {
-        setLeftList(false);
-        setRightList(false);
+      const div = refContainer.current;
+      if (div && !div[openIndex || 0].contains(e.target as Node)) {
+        setList("");
+        setOpenIndex(null);
       }
     };
 
@@ -27,7 +28,7 @@ const Navbar = () => {
     document.addEventListener("click", clickEventListener as any);
     return () =>
       document.removeEventListener("click", clickEventListener as any);
-  }, []);
+  }, [openIndex]);
 
   const { cartCount } = useAddtoCartContext();
 
@@ -41,12 +42,13 @@ const Navbar = () => {
           HOME
         </Link>
         <div className={`${commonFlexStyle} justify-center gap-5 pr-10`}>
-          <div
+          <NavLink
+            to={"/usr/sign-in"}
             className={`${commonFlexStyle} justify-center gap-2 text-[10px] sm:text-[12px] md:text-[14px] hover:text-[#676868] text-[#7f808a] font-[550] font-serif`}
           >
             <Icon className="text-[18px]" icon="majesticons:user-line" />
             <div>Login</div>
-          </div>
+          </NavLink>
           <div className="text-[10px] sm:text-[12px] md:text-[14px] hover:text-[#676868] text-[#7f808a] font-[550] font-serif">
             Become an affiliate?
           </div>
@@ -73,7 +75,7 @@ const Navbar = () => {
           className={`${commonFlexStyle} hidden md:flex justify-center w-[50%] xl:w-[60%] mx-auto`}
         >
           <div
-            className={`${commonFlexStyle} bg-white p-2 h-full justify-center w-[90%]`}
+            className={`${commonFlexStyle} bg-[#fff;] p-2 h-full justify-center w-[90%]`}
           >
             <input
               className="w-full h-[100%] p-2 outline-none"
@@ -115,31 +117,35 @@ const Navbar = () => {
           <div className="text-[#333c53] font-semibold">Cart</div>
         </div>
       </div>
-      <div
-        ref={ref}
-        className="relative grid grid-cols-[200px_repeat(1,1fr)] bg-[#161531]"
-      >
-        <div className={`relative  justify-center p-4 cursor-pointer`}>
+      <div className="relative grid grid-cols-[200px_repeat(1,1fr)] bg-[#161531]">
+        <div className={`z-10 relative justify-center p-4 cursor-pointer`}>
           <div
+            ref={(ref) => {
+              if (ref) refContainer.current[0] = ref;
+            }}
             onClick={() => {
-              setLeftList(!leftList);
-              setRightList(false);
+              setList(list === "left" ? "" : "left");
+              setOpenIndex(0);
             }}
             className={`${commonFlexStyle} gap-2`}
           >
-            <Icon className="text-[25px] text-white" icon="fe:bar" />
-            <div className="text-white text-[15px] font-semibold">
+            <div className="flex flex-col items-center justify-center gap-1">
+              <div className=" rounded-full bg-[#fff;] w-5 h-0.5 text-[30px] text-[#fff;]" />
+              <div className=" rounded-full bg-[#fff;] w-5 h-0.5 text-[30px] text-[#fff;]" />
+              <div className=" rounded-full bg-[#fff;] w-5 h-0.5 text-[30px] text-[#fff;]" />
+            </div>
+            <div className="text-[#fff;] text-[15px] font-semibold">
               Shop by category
             </div>
           </div>
-          {leftList && (
+          {list === "left" && (
             <div className="absolute min-w-[100vw] sm:min-w-full shadow-lg shadow-slate-500 top-full left-0 sm:left-auto">
               {categories?.map((list, index) => (
                 <Link to={list.link}>
                   <div
-                    onClick={() => setLeftList(false)}
+                    onClick={() => setList("")}
                     key={index}
-                    className="w-full p-2 text-[#333] text-[16px] bg-white hover:bg-[#161531] hover:text-white"
+                    className="w-full p-2 text-[#333] text-[16px] bg-[#fff;] hover:bg-[#161531] hover:text-white"
                   >
                     {list.cat}
                   </div>
@@ -150,8 +156,8 @@ const Navbar = () => {
         </div>
         <div className={`${commonFlexStyle} hidden lg:flex justify-end pr-5`}>
           {rightCategory?.map((list, index) => (
-            <Link to={list.link}>
-              <div key={index} className="p-4 text-white text-[15px]">
+            <Link state={{ feature: list.feature }} to={list.link}>
+              <div key={index} className="p-4 text-[#fff;] text-[15px]">
                 {list.cat}
               </div>
             </Link>
@@ -161,23 +167,29 @@ const Navbar = () => {
         <div
           className={`${commonFlexStyle} flex lg:hidden justify-end pr-5 cursor-pointer`}
         >
-          <Icon
+          <div
+            className="flex flex-col items-center justify-center gap-1"
             onClick={() => {
-              setRightList(!rightList);
-              setLeftList(false);
+              setList(list === "right" ? "" : "right");
+              setOpenIndex(1);
             }}
-            className=" text-[30px] text-white"
-            icon="fe:bar"
-          />
+            ref={(ref) => {
+              if (ref) refContainer.current[1] = ref;
+            }}
+          >
+            <div className=" rounded-full bg-[#fff;] w-6 h-1 text-[30px] text-[#fff;]" />
+            <div className=" rounded-full bg-[#fff;] w-6 h-1 text-[30px] text-[#fff;]" />
+            <div className=" rounded-full bg-[#fff;] w-6 h-1 text-[30px] text-[#fff;]" />
+          </div>
         </div>
-        {rightList && (
-          <div className="absolute left-0 top-full min-w-full bg-[#161531]">
+        {list === "right" && (
+          <div className="z-10 absolute left-0 top-full min-w-full bg-[#161531]">
             {rightCategory?.map((list, index) => (
-              <Link to={list.link}>
+              <Link state={{ feature: list.feature }} to={list.link}>
                 <div
-                  onClick={() => setRightList(false)}
+                  onClick={() => setList("")}
                   key={index}
-                  className="w-full p-4 text-white text-[15px] hover:bg-[#26254b]"
+                  className="w-full p-4 text-[#fff;] text-[15px] hover:bg-[#26254b]"
                 >
                   {list.cat}
                 </div>

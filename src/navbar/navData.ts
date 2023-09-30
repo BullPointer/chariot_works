@@ -1,12 +1,17 @@
+
 export const moreList = [
     {
-        text: "contact us",
+        text: "Contact Us",
         link: "/contact-us"
     },
     {
-        text: "privacy policy",
+        text: "About Us",
+        link: "/about-us",
+    },
+    {
+        text: "Privacy Policy",
         link: "/privacy-policy"
-    }
+    },
 ]
 
 export const navData = [
@@ -40,8 +45,4 @@ export const navData = [
             },
         ]
     },
-    {
-        text: "ABOUT US",
-        link: "/about-us",
-    }
 ]

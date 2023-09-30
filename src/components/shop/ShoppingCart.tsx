@@ -68,14 +68,14 @@ const ShoppingCart = () => {
   return (
     <div className="min-h-[100vh] bg-[#f1f1f5;]">
       <div className="w-[100%] flex flex-col justify-start items-center gap-3">
-        <div className="flex flex-col justify-start items-start gap-5 w-[80%] px-5 py-10 mt-10 bg-[#fff;]">
+        <div className="flex flex-col justify-start items-start gap-5 w-[90%] sm:w-[80%] px-5 py-10 mt-10 bg-[#fff;]">
           <div className="font-[400] text-[25px]">Shopping Cart</div>
           {items?.map((item: productsDataType, index: number) => (
             <div
               key={index}
-              className="flex flex-row justify-start items-start gap-5"
+              className="w-full flex flex-col sm:flex-row justify-start items-start gap-5"
             >
-              <div className="w-48 h-44">
+              <div className="w-full sm:w-56 h-44">
                 <img
                   className="w-[100%] h-[100%] rounded-md object-cover"
                   src={`http://localhost:3000/${item.productImage}`}
@@ -165,7 +165,7 @@ const ShoppingCart = () => {
             </div>
           ))}
         </div>
-        <div className="w-[80%] p-5 mb-10 bg-[#fff;]">
+        <div className="w-[90%] sm:w-[80%] p-5 mb-10 bg-[#fff;]">
           <div className="flex flex-col justify-start items-start gap-2">
             <div className="text-[18px] font-serif text-[#2291FF;]">
               Subtotal for all product
@@ -182,7 +182,7 @@ const ShoppingCart = () => {
             </div>
           </div>
           <Link to={"/shop/handler/order"}>
-            <div className="w-full p-2 mt-2 rounded-full font-bold text-center text-[18px] text-[#fff;] hover:bg-[#3e3d5c] bg-[#6c6b9b;]">
+            <div className="w-full p-2 mt-2 rounded-full font-bold text-center text-[15px] xs:text-[18px] text-[#fff;] hover:bg-[#3e3d5c] bg-[#6c6b9b;]">
               Proceed to checkout
             </div>
           </Link>

@@ -22,20 +22,11 @@ const customerSupportData = [
 const FooterSelect = () => {
   return (
     <div className="bg-[#161531] py-5">
-      <div className="grid grid-cols-3">
-        {["Contact Info.", "Categories", "Customer Supports"].map(
-          (list, index) => (
-            <div
-              key={index}
-              className="text-[16px] font-semibold first:text-[20px] text-white px-10 py-2"
-            >
-              {list}
-            </div>
-          )
-        )}
-      </div>
-      <div className="grid grid-cols-3">
+      <div className="grid grid-cols-1 ss:grid-cols-2 md:grid-cols-3">
         <div className="flex flex-col justify-start items-start">
+          <div className="text-[20px] font-semibold text-white px-10 py-2">
+            Contact Info.
+          </div>
           {[
             "17 Unity Close, Unity Estate Iju-Ishaga.",
             "+234 9039736215",
@@ -50,6 +41,9 @@ const FooterSelect = () => {
           ))}
         </div>
         <div className="flex flex-col justify-start items-start ">
+          <div className="text-[16px] font-semibold text-white px-10 py-2">
+            Categories
+          </div>
           {categories?.map((list, index) => (
             <Link to={list.link}>
               <div
@@ -62,6 +56,9 @@ const FooterSelect = () => {
           ))}
         </div>
         <div className="flex flex-col justify-start items-start ">
+          <div className="text-[16px] font-semibold text-white px-10 py-2">
+            Customer Supports
+          </div>
           {customerSupportData?.map((list, index) => (
             <Link to={list.link}>
               <div
