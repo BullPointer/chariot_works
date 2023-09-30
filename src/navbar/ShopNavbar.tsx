@@ -7,10 +7,16 @@ import { Link, NavLink } from "react-router-dom";
 import { useAddtoCartContext } from "../context/AddToCartContext";
 
 const Navbar = () => {
+  const token = localStorage.getItem("token");
   const commonFlexStyle = "flex flex-row items-center";
   const [list, setList] = useState("");
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const refContainer = useRef<HTMLDivElement[]>([]);
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    window.location.reload();
+  };
 
   useEffect(() => {
     const handleDetectBody = (e: React.MouseEvent<HTMLElement>) => {
@@ -42,13 +48,23 @@ const Navbar = () => {
           HOME
         </Link>
         <div className={`${commonFlexStyle} justify-center gap-5 pr-10`}>
-          <NavLink
-            to={"/usr/sign-in"}
-            className={`${commonFlexStyle} justify-center gap-2 text-[10px] sm:text-[12px] md:text-[14px] hover:text-[#676868] text-[#7f808a] font-[550] font-serif`}
-          >
-            <Icon className="text-[18px]" icon="majesticons:user-line" />
-            <div>Login</div>
-          </NavLink>
+          {!token ? (
+            <NavLink
+              to={"/usr/sign-in"}
+              className={`${commonFlexStyle} justify-center gap-2 text-[10px] sm:text-[12px] md:text-[14px] hover:text-[#676868] text-[#7f808a] font-[550] font-serif`}
+            >
+              <Icon className="text-[18px]" icon="majesticons:user-line" />
+              <div>Login</div>
+            </NavLink>
+          ) : (
+            <div
+              onClick={handleLogout}
+              className={`${commonFlexStyle} cursor-pointer justify-center gap-2 text-[10px] sm:text-[12px] md:text-[14px] hover:text-[#676868] text-[#7f808a] font-[550] font-serif`}
+            >
+              <Icon className="text-[18px]" icon="majesticons:user-line" />
+              <div>Logout</div>
+            </div>
+          )}
           <div className="text-[10px] sm:text-[12px] md:text-[14px] hover:text-[#676868] text-[#7f808a] font-[550] font-serif">
             Become an affiliate?
           </div>

@@ -16,7 +16,6 @@ const List = ({ setShow }: SmallNavbarProps) => {
     setShow(false);
     localStorage.removeItem("token");
     window.location.reload();
-    console.log(token);
   };
   return (
     <>
