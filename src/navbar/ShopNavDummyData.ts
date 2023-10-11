@@ -1,12 +1,12 @@
 export const categories =
     [
-        { cat: "P.O.P Plaster", link: "category/products/p.o.p-plaster" },
-        { cat: "Screeding Paint", link: "category/products/screeding-paint" },
-        { cat: "Concrete Nails", link: "category/products/concrete-nails" },
-        { cat: "Binding Wires", link: "category/products/binding-wires" },
-        { cat: "P.O.P Fillas", link: "category/products/p.o.p-fillas" },
-        { cat: "General Paint", link: "category/products/general-paint" },
-        { cat: "Bonds", link: "category/products/bonds" },
+        { cat: "P.O.P Plaster", link: "category/p.o.p-plaster", category: "P.O.P Plaster" },
+        { cat: "Screeding Paint", link: "category/screeding-paint", category: "Screeding Paint" },
+        { cat: "Concrete Nails", link: "category/concrete-nails", category: "Concrete Nails" },
+        { cat: "Binding Wires", link: "category/binding-wires", category: "Binding Wires" },
+        { cat: "P.O.P Fillas", link: "category/p.o.p-fillas", category: "P.O.P Fillas" },
+        { cat: "General Paint", link: "category/general-paint", category: "General Paint" },
+        { cat: "Bonds", link: "category/bonds", category: "Bonds" },
     ]
 
 

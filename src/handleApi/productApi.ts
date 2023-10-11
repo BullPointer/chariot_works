@@ -5,8 +5,27 @@ export const getProductsApi = async () => {
     return response;
 };
 
+export const getProductsByCategoryApi = async (value: string) => {
+    const response = await axios.get(`http://localhost:3000/products/categories?category=${value}`);
+    return response;
+};
+
+export const getProductsByFeatureApi = async (value: string) => {
+    const response = await axios.get(`http://localhost:3000/products/features?feature=${value}`);
+    return response;
+};
+
 export const getProductByIdApi = async (id: string) => {
     const response = await axios.get(`http://localhost:3000/products/${id}`);
     return response;
 };
 
+export const getCategoryCardApi = async () => {
+    const response = await axios.get("http://localhost:3000/card-display");
+    return response;
+};
+
+export const getCategoryCardByIdApi = async (id: string) => {
+    const response = await axios.get(`http://localhost:3000/card-display/${id}`);
+    return response;
+};

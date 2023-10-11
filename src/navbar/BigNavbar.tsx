@@ -35,7 +35,7 @@ const BigNavbar = () => {
               data?.list?.map((item, i) => (
                 <li
                   key={i}
-                  className="text-[16px] font-bold text-[#161531] py-1 px-2 hover:text-white hover:bg-[#161531]"
+                  className="text-[16px] font-bold text-[#161531] py-1 px-2 hover:text-white hover:bg-[#8293e6]"
                 >
                   <Link to={item.link}> {item.text.toUpperCase()}</Link>
                 </li>
@@ -72,7 +72,7 @@ const BigNavbar = () => {
                 <Link to={item.link}>
                   <li
                     key={i}
-                    className="text-[16px] font-bold text-[#161531] py-1 px-2 hover:text-white hover:bg-[#161531]"
+                    className="text-[16px] font-bold text-[#161531] py-1 px-2 hover:text-white hover:bg-[#8293e6]"
                   >
                     {item.text}
                   </li>

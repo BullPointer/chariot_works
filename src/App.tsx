@@ -21,6 +21,7 @@ import { getAddToCartUUID, setAddToCartUUID } from "./handleApi/handleCookie";
 import { ProtectedRoutes } from "./utils/ProtectedRoutes";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
+import ViewCategory from "./components/shop/ViewCategory";
 
 const App = () => {
   const handleScrollTo = () =>
@@ -53,6 +54,7 @@ const App = () => {
         <Route index element={<MainShop />} />
         <Route path="products/product-details" element={<ProductDetails />} />
         <Route path="products/:feature" element={<ViewProducts />} />
+        <Route path="category/:category" element={<ViewCategory />} />
         <Route path="view_cart" element={<ShoppingCart />} />
         <Route
           path="handler/order"

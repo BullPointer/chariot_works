@@ -1,72 +1,51 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
-import { productsDataType } from "./typesData";
-import { Link, createSearchParams } from "react-router-dom";
 import { Icon } from "@iconify/react";
+import { productsDataType } from "./typesData";
+import { Link, createSearchParams, useLocation } from "react-router-dom";
 import { shortenLetters } from "../utils/Shortener";
-import { getProductsByFeatureApi } from "../../handleApi/productApi";
+import { getProductsByCategoryApi } from "../../handleApi/productApi";
 
-type ProdByCatProps = {
-  heading: string;
-  feature: string;
-  bgColor: string;
-  viewMoreLink: string;
-};
-
-const ProductsByFeature = ({
-  heading,
-  feature,
-  bgColor,
-  viewMoreLink,
-}: ProdByCatProps) => {
+const ViewCategory = () => {
+  const { state } = useLocation();
+  const [productLength, setProductLength] = useState(100);
+  const [loadIndex, setLoadIndex] = useState(12);
   const [data, setData] = useState([] as productsDataType[]);
 
   useEffect(() => {
     const getProductsFunc = async () => {
+      setData([]);
+      console.log("The cate is ", state);
       try {
-        const response = await getProductsByFeatureApi(feature);
+        const response = await getProductsByCategoryApi(state.category);
+        console.log("The product is ", response.data);
 
-        setData(response.data.products);
+        setProductLength(response.data.products.length);
+        setData(response.data.products.slice(0, loadIndex));
       } catch (error) {
         console.log("Error is ", error);
       }
     };
     getProductsFunc();
-    // console.log(data);
-  }, []);
-
+  }, [loadIndex, state]);
   return (
     <>
       {data.length < 1 ? (
         <div className="w-full py-16">
           <Icon
             className="text-[250px] xs:text-[300px] mx-auto text-[#353e63;]"
-            icon="svg-spinners:8-dots-rotate"
+            icon="svg-spinners:wind-toy"
           />
         </div>
       ) : (
-        <div style={{ backgroundColor: `${bgColor}` }} className="pt-10 pb-10">
+        <div className="pb-20 pt-10 bg-[#fff];">
           <div className="flex flex-row justify-between items-center px-5 my-3">
-            <div className="text-[18px] ss:text-[22px] sm:text-[25px] md:text-[28px] font-[700] text-[#161531;]">
-              {heading}
+            <div className="text-[23px] xm:text-[28px] font-[700] text-[#161531;]">
+              {state.category.toUpperCase()}
             </div>
-            <Link
-              to={viewMoreLink}
-              state={{ feature: feature }}
-              onClick={() => {
-                window.scrollTo({
-                  behavior: "smooth",
-                  left: 0,
-                  top: 0,
-                });
-              }}
-              className=" py-2 px-4 rounded-sm text-[10px] ss:text-[12px] sm:text-[14px] text-[#fff;] bg-[#2291FF;]"
-            >
-              View more
-            </Link>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-            {data?.slice(0, 12).map((p, index) => (
+            {data?.map((p, index) => (
               <div
                 key={index}
                 className="flex flex-col items-start justify-start gap-2 pb-5 border-2 rounded-md mx-2 py-2 px-4 bg-[#fff;]"
@@ -75,7 +54,7 @@ const ProductsByFeature = ({
                   <img
                     className="w-[100%] h-[100%] object-cover"
                     src={`http://localhost:3000/${p.productImage}`}
-                    alt=""
+                    alt="Product Image"
                   />
                 </div>
                 <Link
@@ -137,10 +116,22 @@ const ProductsByFeature = ({
               </div>
             ))}
           </div>
+          <div className="flex flex-row justify-center items-center mt-10">
+            {loadIndex > productLength ? (
+              <div className="text-[#2291FF;]">No more records</div>
+            ) : (
+              <div
+                onClick={() => setLoadIndex(loadIndex + 12)}
+                className="py-2 px-3 rounded-md cursor-pointer hover:bg-[#185088;] hover:text-[#fff;] text-[#2291FF;] border-2 border-[#2291FF;]"
+              >
+                Load more
+              </div>
+            )}
+          </div>
         </div>
       )}
     </>
   );
 };
 
-export default ProductsByFeature;
+export default ViewCategory;

@@ -41,10 +41,9 @@ const Welcome = () => {
                 {text.toUpperCase()}
               </div>
               <Link to={link}>
-                {" "}
-                <div className="bg-[#161531] hover:bg-[#0e0d1f] px-4 py-1 sm:py-2 cursor-pointer rounded-full text-white font-bold">
+                <button className="welcome-btn px-4 py-1 sm:py-2 cursor-pointer rounded-full text-white font-bold">
                   Learn More
-                </div>
+                </button>
               </Link>
             </div>
           </div>
@@ -60,7 +59,7 @@ const Welcome = () => {
             {Images.map((i, index) => (
               <div
                 onClick={() => setCurrentImg(index)}
-                key={index}
+                key={index + i.text}
                 className={`w-2 h-2 bg-white rounded-full ${
                   currentImg === index ? "p-2" : "opacity-50"
                 }`}
