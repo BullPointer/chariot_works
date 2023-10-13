@@ -85,17 +85,24 @@ export const SingleCategoryCard = (cat: { category: string }) => {
   }, []);
 
   return (
-    <Link
-      state={{ category: data.category }}
-      to={`/shop/category/${cat.category.split(" ").join("-").toLowerCase()}`}
-    >
-      <div className="h-[180px] w-full p-y px-7">
-        <img
-          className="w-[100%] h-[100%] object-cover rounded-sm"
-          src={`http://localhost:3000/${data.productImage}`}
-          alt="Product Image"
-        />
-      </div>
-    </Link>
+    <>
+      {Object.keys(data).length > 0 && (
+        <Link
+          state={{ category: data.category }}
+          to={`/shop/category/${cat.category
+            .split(" ")
+            .join("-")
+            .toLowerCase()}`}
+        >
+          <div className="h-[180px] w-full p-y px-7">
+            <img
+              className="w-[100%] h-[100%] object-cover rounded-sm"
+              src={`http://localhost:3000/${data.productImage}`}
+              alt="Product Image"
+            />
+          </div>
+        </Link>
+      )}
+    </>
   );
 };

@@ -22,6 +22,7 @@ import { ProtectedRoutes } from "./utils/ProtectedRoutes";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 import ViewCategory from "./components/shop/ViewCategory";
+import { validateToken } from "./utils/AuthValidation";
 
 const App = () => {
   const handleScrollTo = () =>
@@ -34,6 +35,8 @@ const App = () => {
   }, []);
 
   useEffect(() => {
+    validateToken();
+
     const cartId = getAddToCartUUID();
     console.log(cartId);
 
