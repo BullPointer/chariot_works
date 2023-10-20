@@ -50,6 +50,8 @@ export const DoubleCategoryCard = ({
           to={`/shop/category/${category[index]
             .split(" ")
             .join("-")
+            .split(".")
+            .join("")
             .toLowerCase()}`}
           key={index}
         >
@@ -92,6 +94,8 @@ export const SingleCategoryCard = (cat: { category: string }) => {
           to={`/shop/category/${cat.category
             .split(" ")
             .join("-")
+            .split(".")
+            .join("")
             .toLowerCase()}`}
         >
           <div className="h-[180px] w-full p-y px-7">

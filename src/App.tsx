@@ -23,6 +23,10 @@ import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 import ViewCategory from "./components/shop/ViewCategory";
 import { validateToken } from "./utils/AuthValidation";
+import Brands from "./components/shop/Brands";
+import ForgotPassword from "./components/Account/ForgotPassword";
+import NewPassword from "./components/Account/NewPassword";
+import VerifiedUser from "./components/Account/VerifiedUser";
 
 const App = () => {
   const handleScrollTo = () =>
@@ -53,12 +57,17 @@ const App = () => {
       <Route path="/" element={<Home />} />
       <Route path="usr/sign-in" element={<SignIn />} />
       <Route path="usr/sign-up" element={<SignUp />} />
+      <Route path="usr/forgot-password" element={<ForgotPassword />} />
+      <Route path="reset-password" element={<NewPassword />} />
+      <Route path="user" element={<VerifiedUser />} />
       <Route path="shop" element={<Shop />}>
         <Route index element={<MainShop />} />
         <Route path="products/product-details" element={<ProductDetails />} />
         <Route path="products/:feature" element={<ViewProducts />} />
         <Route path="category/:category" element={<ViewCategory />} />
         <Route path="view_cart" element={<ShoppingCart />} />
+        <Route path="brands" element={<Brands />} />
+        <Route path="brands/:brand" element={<Brands />} />
         <Route
           path="handler/order"
           element={

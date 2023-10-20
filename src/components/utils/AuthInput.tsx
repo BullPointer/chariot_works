@@ -11,7 +11,7 @@ type InputPropTypes = {
 const Input = ({ label, name, type, handleChange, error }: InputPropTypes) => {
   return (
     <div className="w-[90%] md:w-[80%] m-auto flex flex-col justify-center items-start gap-2">
-      <label className="text-[16px] text-black font-semibold" htmlFor="">
+      <label className="text-[16px] text-[#201e1e99] font-semibold" htmlFor="">
         {label}
       </label>
       <input

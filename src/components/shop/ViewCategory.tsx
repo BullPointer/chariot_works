@@ -20,6 +20,7 @@ const ViewCategory = () => {
       try {
         const response = await getProductsByCategoryApi(state.category);
         console.log("The product is ", response.data);
+        console.log("The State is ", state);
 
         setProductLength(response.data.products.length);
         setData(response.data.products.slice(0, loadIndex));

@@ -1,9 +1,12 @@
 import ProductsByFeature from "./ProductsByFeature";
 import { DoubleCategoryCard, SingleCategoryCard } from "./CategoryCard";
+import BrandCarousel from "./BrandCarousel";
+import AdvertisementCarousel from "./AdvertisementCarousel";
 
 const MainShop = () => {
   return (
     <div>
+      <AdvertisementCarousel />
       <ProductsByFeature
         heading={"Featured Products"}
         feature={"Featured Product"}
@@ -40,6 +43,7 @@ const MainShop = () => {
         second={"2"}
         category={["Screeding Paint", "P.O.P Plaster"]}
       />
+      <BrandCarousel />
     </div>
   );
 };

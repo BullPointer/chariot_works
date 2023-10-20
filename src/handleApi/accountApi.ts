@@ -7,7 +7,7 @@ type dataProps = {
 };
 
 export const signupApi = (cred: dataProps) => {
-    // const link = "https://osicrypto-backend.onrender.com/users/signup";
+
     const link = "http://localhost:3000/users/signup";
     const data = {
         username: cred.fullname,
@@ -26,7 +26,7 @@ export const signupApi = (cred: dataProps) => {
 };
 
 export const signinApi = (cred: dataProps) => {
-    // const link = "https://osicrypto-backend.onrender.com/users/login";
+
     const link = "http://localhost:3000/users/login";
 
     const data = {
@@ -43,3 +43,48 @@ export const signinApi = (cred: dataProps) => {
     const response = axios.post(link, data, config);
     return response;
 };
+
+export const forgotPasswordApi = async (email: string) => {
+
+    const link = "http://localhost:3000/users/password-reset";
+
+    const data = { email: email };
+
+    const config = {
+        headers: {
+            "Content-Type": "application/json",
+        },
+    };
+    const response = await axios.post(link, data, config)
+    return response;
+
+}
+type ResetPasswordTypes = {
+    id: string; token: string; password: string
+}
+export const resetPasswordApi = async (cred: ResetPasswordTypes) => {
+
+    const link = `http://localhost:3000/users/new-password`;
+
+    const data = {
+        id: cred.id,
+        token: cred.token,
+        password: cred.password
+    }
+    const config = {
+        headers: {
+            "Content-Type": "application/json"
+        }
+    }
+
+    const response = await axios.post(link, data, config);
+    return response;
+}
+
+export const verifyAccountApi = async (id: string, token: string) => {
+
+    const link = `http://localhost:3000/users/user/${id}/verify/${token}`;
+
+    const response = await axios.get(link);
+    return response;
+}

@@ -78,11 +78,11 @@ const Signin = () => {
       <div className="mx-auto pb-20 w-[90%] md:w-[80%] lg:w-[50%] border border-[#d3d2d2] h-auto bg-white rounded-md">
         <div className="flex flex-col justify-center items-start px-3 pt-1 pb-5 lg:px-5 w-[100%] mx-auto">
           <Link to={"/"}>
-            <div className="py-1 px-3 rounded-md text-[21px] font-bold text-[#6d728b]">
+            <div className="py-1 px-3 rounded-md text-[21px] font-bold text-[#272525]">
               CHARIOT-INTERIOR
             </div>
           </Link>
-          <div className="w-full text-center text-[18px] lg:text-[18px] py-2 font-[700] text-black">
+          <div className="w-full text-center text-[18px] lg:text-[18px] py-2 font-[700] text-[#2c3355]">
             Sign in
           </div>
         </div>
@@ -118,9 +118,12 @@ const Signin = () => {
                 </div>
               </Link>
             </div>
-            <div className="text-sm text-red-500 cursor-pointer font-serif">
+            <Link
+              to={"/usr/forgot-password"}
+              className="text-sm text-red-500 cursor-pointer font-serif"
+            >
               Forgot Your Password?
-            </div>
+            </Link>
           </div>
           <div className="w-[80%] mx-auto text-black text-[10px] pb-4">
             By continuing, I agree with your

@@ -157,7 +157,10 @@ const Navbar = () => {
           {list === "left" && (
             <div className="absolute min-w-[100vw] sm:min-w-full shadow-lg shadow-slate-500 top-full left-0 sm:left-auto">
               {categories?.map((list, index) => (
-                <Link state={{ category: list.category }} to={list.link}>
+                <Link
+                  state={{ category: list.category }}
+                  to={list.link.split(".").join("").toLowerCase()}
+                >
                   <div
                     onClick={() => setList("")}
                     key={index}

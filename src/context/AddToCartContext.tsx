@@ -28,6 +28,7 @@ export const AddToCartProvider = ({ children }: ContextProviderProps) => {
     try {
       const response = await createCartsApi(product._id);
       console.log("The CreateCart response is this ", response);
+      window.location.reload();
     } catch (error: any) {
       console.log("New Error is ", error);
     }
