@@ -5,18 +5,53 @@ import { categories, rightCategory } from "./ShopNavDummyData";
 import { useEffect, useRef, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { useAddtoCartContext } from "../context/AddToCartContext";
+import { getProductsApi } from "../handleApi/productApi";
+import { productsDataType } from "../components/shop/typesData";
+import ShopSearchBar from "./ShopSearchBar";
 
 const Navbar = () => {
   const token = localStorage.getItem("token");
   const commonFlexStyle = "flex flex-row items-center";
   const [list, setList] = useState("");
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const [screenSize, setScreenSize] = useState(window.innerWidth);
+  const [showSearch, setShowSearch] = useState(false);
+  const [showSearchList, setShowSearchList] = useState(false);
+  const [searchResult, setSearchResult] = useState([] as productsDataType[]);
   const refContainer = useRef<HTMLDivElement[]>([]);
+  const searchRef = useRef("");
+
+  const handleSearch = async ({
+    target,
+  }: React.ChangeEvent<HTMLInputElement>) => {
+    const { value } = target;
+    try {
+      const { data } = await getProductsApi();
+      const filtered = data.products
+        .filter((p: productsDataType) =>
+          p.name.toLowerCase().includes(value.toLowerCase())
+        )
+        .slice(0, 8);
+      setSearchResult(filtered);
+    } catch (error) {
+      console.log("Error found in search query ", error);
+    }
+  };
 
   const handleLogout = () => {
     localStorage.removeItem("token");
     window.location.reload();
   };
+
+  useEffect(() => {
+    const handleResize = (e: Event) => {
+      const target = e.target as Window;
+      setScreenSize(target.innerWidth);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [screenSize]);
 
   useEffect(() => {
     const handleDetectBody = (e: React.MouseEvent<HTMLElement>) => {
@@ -35,6 +70,18 @@ const Navbar = () => {
     return () =>
       document.removeEventListener("click", clickEventListener as any);
   }, [openIndex]);
+
+  useEffect(() => {
+    const handleDetectSearchBar = (e) => {
+      const div = searchRef.current;
+      if (div && !div.contains(e.target)) {
+        setShowSearchList(false);
+      }
+    };
+
+    document.addEventListener("click", handleDetectSearchBar);
+    return () => document.removeEventListener("click", handleDetectSearchBar);
+  }, []);
 
   const { cartCount } = useAddtoCartContext();
 
@@ -70,7 +117,9 @@ const Navbar = () => {
           </div>
         </div>
       </div>
-      <div className={`${commonFlexStyle} justify-evenly bg-[#aac4c4] py-4`}>
+      <div
+        className={`${commonFlexStyle} relative justify-evenly bg-[#aac4c4] py-4`}
+      >
         <div
           className={`${commonFlexStyle} pl-4  w-[40%] md:w-[30%] xl:w-[20%] justify-end`}
         >
@@ -87,26 +136,32 @@ const Navbar = () => {
             </div>
           </Link>
         </div>
-        <div
-          className={`${commonFlexStyle} hidden md:flex justify-center w-[50%] xl:w-[60%] mx-auto`}
-        >
-          <div
-            className={`${commonFlexStyle} bg-[#fff;] p-2 h-full justify-center w-[90%]`}
-          >
-            <input
-              className="w-full h-[100%] p-2 outline-none"
-              type="text"
-              name=""
-              placeholder="Search store..."
+        {screenSize <= 768 ? (
+          showSearch && (
+            <ShopSearchBar
+              setShowSearchList={setShowSearchList}
+              handleSearch={handleSearch}
+              commonFlexStyle={commonFlexStyle}
+              screenSize={screenSize}
+              showSearchList={showSearchList}
+              searchResult={searchResult}
+              searchRef={searchRef}
             />
-            <Icon
-              className="text-[25px] text-[#303030]"
-              icon="akar-icons:search"
-            />
-          </div>
-        </div>
+          )
+        ) : (
+          <ShopSearchBar
+            setShowSearchList={setShowSearchList}
+            handleSearch={handleSearch}
+            commonFlexStyle={commonFlexStyle}
+            screenSize={screenSize}
+            showSearchList={showSearchList}
+            searchResult={searchResult}
+            searchRef={searchRef}
+          />
+        )}
         <div
-          className={`${commonFlexStyle} flex md:hidden backdrop-filter justify-center w-10 h-10 rounded-full bg-[#ffffff73]`}
+          onClick={() => setShowSearch(!showSearch)}
+          className={`cursor-pointer ${commonFlexStyle} flex md:hidden backdrop-filter justify-center w-10 h-10 rounded-full bg-[#ffffff73]`}
         >
           <Icon
             className={`text-[18px] text-[#0f1529] justify-center`}

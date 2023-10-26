@@ -25,3 +25,8 @@ export const getCartByIdApi = async (id: string) => {
     const response = await axios.get(`http://localhost:3000/addToCart/${id}`);
     return response;
 };
+
+export const removeCartByIdApi = async (id: string) => {
+    const response = await axios.delete(`http://localhost:3000/addToCart/${id}`, { withCredentials: true });
+    return response;
+};

@@ -6,7 +6,7 @@ import { useEffect, useRef, useState } from "react";
 import { productsDataType } from "./typesData";
 import { mapNumber } from "../utils/Shortener";
 import { Link } from "react-router-dom";
-import { updateCartByIdApi } from "../../handleApi/cartApi";
+import { removeCartByIdApi, updateCartByIdApi } from "../../handleApi/cartApi";
 
 type openOptionsType = {
   id: string;
@@ -65,6 +65,15 @@ const ShoppingCart = () => {
     }
   };
 
+  const handleRemoveCartItem = async (id: string) => {
+    try {
+      await removeCartByIdApi(id);
+      window.location.reload();
+    } catch (error) {
+      console.log("Error found while removing Cart Item ", error);
+    }
+  };
+
   return (
     <div className="min-h-[100vh] bg-[#f1f1f5;]">
       <div className="w-[100%] flex flex-col justify-start items-center gap-3">
@@ -95,71 +104,86 @@ const ShoppingCart = () => {
                   <span className="mr-1">Quantity Available:</span>
                   {item.quantityAvailable}
                 </p>
-                <div
-                  className={`relative ${
-                    openOptions.id === item._id ? "rounded-t-lg " : "rounded-lg"
-                  }  border-2 py-1 px-4 `}
-                >
+                <div className="flex flex-row justify-start gap-2">
                   <div
-                    ref={(ref) => {
-                      if (ref) refContainer.current[index] = ref;
-                    }}
-                    onClick={() => {
-                      if (openOptions.id === item._id) {
-                        setOpenOptions({
-                          ...openOptions,
-                          id: "",
-                          index: null,
-                        });
-                      } else {
-                        setOpenOptions({
-                          ...openOptions,
-                          id: item._id,
-                          index: index,
-                        });
-                      }
-                      setSliceQty({ ...sliceQty, from: 0, to: 5 });
-                    }}
-                    className="flex flex-row justify-center items-center gap-2 cursor-pointer text-[14px]"
+                    className={`relative ${
+                      openOptions.id === item._id
+                        ? "rounded-t-lg "
+                        : "rounded-lg"
+                    }  border-2 py-1 px-4 `}
                   >
-                    <div>Qty: {item.count}</div>
-                    <Icon icon="ep:arrow-down-bold" />
-                  </div>
-                  {openOptions.id === item._id && (
                     <div
-                      onClick={(e) => e.stopPropagation()}
-                      className="z-10 w-[100%] absolute top-full left-0 rounded-b-md shadow-[#e6e1e1;] shadow-sm border-2 border-[#e6e1e1;]"
+                      ref={(ref) => {
+                        if (ref) refContainer.current[index] = ref;
+                      }}
+                      onClick={() => {
+                        if (openOptions.id === item._id) {
+                          setOpenOptions({
+                            ...openOptions,
+                            id: "",
+                            index: null,
+                          });
+                        } else {
+                          setOpenOptions({
+                            ...openOptions,
+                            id: item._id,
+                            index: index,
+                          });
+                        }
+                        setSliceQty({ ...sliceQty, from: 0, to: 5 });
+                      }}
+                      className="flex flex-row justify-center items-center gap-2 cursor-pointer text-[14px]"
                     >
-                      {mapNumber(item.quantityAvailable, sliceQty)?.map(
-                        (num, index) => (
-                          <div
-                            onClick={() => handleSelectQty(item._id, num)}
-                            className="text-center text-[14px] py-1 px-2 hover:bg-[#dfdbdb] cursor-pointer bg-[#fff;]"
-                            key={index}
-                          >
-                            {num}
-                          </div>
-                        )
-                      )}
+                      <div>Qty: {item.count}</div>
+                      <Icon icon="ep:arrow-down-bold" />
+                    </div>
+                    {openOptions.id === item._id && (
                       <div
-                        className="w-[100%] flex flex-row justify-center items-center rounded-b-md"
-                        key={index}
+                        onClick={(e) => e.stopPropagation()}
+                        className="z-10 w-[100%] absolute top-full left-0 rounded-b-md shadow-[#e6e1e1;] shadow-sm border-2 border-[#e6e1e1;]"
                       >
+                        {mapNumber(item.quantityAvailable, sliceQty)?.map(
+                          (num, index) => (
+                            <div
+                              onClick={() => handleSelectQty(item._id, num)}
+                              className="text-center text-[14px] py-1 px-2 hover:bg-[#dfdbdb] cursor-pointer bg-[#fff;]"
+                              key={index}
+                            >
+                              {num}
+                            </div>
+                          )
+                        )}
                         <div
-                          className="w-full border-r text-center py-1 px-2 text-[20px] text-[#fff;] hover:bg-[#607963] cursor-pointer bg-[#787967]"
-                          onClick={() => handleShowless()}
+                          className="w-[100%] flex flex-row justify-center items-center rounded-b-md"
+                          key={index}
                         >
-                          -
-                        </div>
-                        <div
-                          className="w-full border-l text-center py-1 px-2 text-[20px] text-[#fff;] hover:bg-[#607963] cursor-pointer bg-[#b68d8d]"
-                          onClick={() => handleShowmore(item.quantityAvailable)}
-                        >
-                          +
+                          <div
+                            className="w-full border-r text-center py-1 px-2 text-[20px] text-[#fff;] hover:bg-[#607963] cursor-pointer bg-[#787967]"
+                            onClick={() => handleShowless()}
+                          >
+                            -
+                          </div>
+                          <div
+                            className="w-full border-l text-center py-1 px-2 text-[20px] text-[#fff;] hover:bg-[#607963] cursor-pointer bg-[#b68d8d]"
+                            onClick={() =>
+                              handleShowmore(item.quantityAvailable)
+                            }
+                          >
+                            +
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  )}
+                    )}
+                  </div>
+                  <div
+                    onClick={() => handleRemoveCartItem(item._id)}
+                    className="py-1 px-4 rounded-lg cursor-pointer text-[#6c6b9b]"
+                  >
+                    <Icon
+                      className="text-[24px]"
+                      icon="fluent:delete-16-filled"
+                    />
+                  </div>
                 </div>
               </div>
             </div>

@@ -67,7 +67,6 @@ const AdvertisementCarousel = () => {
     };
     getData();
   }, []);
-  console.log(data);
 
   return (
     <div className="w-full px-4 lg:px-36 pt-10">

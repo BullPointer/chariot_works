@@ -13,7 +13,6 @@ const ViewBestSellers = () => {
       window.innerWidth <= 768 ? setIsOpen(false) : setIsOpen(true);
       try {
         const { data } = await getProductsByFeatureApi("Best Sellers");
-        console.log(data.products);
 
         setData(data.products);
       } catch (error) {

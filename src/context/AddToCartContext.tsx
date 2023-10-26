@@ -38,8 +38,13 @@ export const AddToCartProvider = ({ children }: ContextProviderProps) => {
     const getCartsFunc = async () => {
       try {
         const { data } = await getCartsApi();
+
         setCarts(data.products);
-        setCartCount(data.count);
+        const totalCount = data.products.reduce(
+          (prev: number, next: productsDataType) => prev + next.count,
+          0
+        );
+        setCartCount(totalCount);
         const totalQuantity = data.products.reduce(
           (prev: number, next: productsDataType) =>
             prev + next.count * next.price,

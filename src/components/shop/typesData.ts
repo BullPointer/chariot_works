@@ -5,6 +5,7 @@ export type productsDataType = {
     category: string,
     productImage: string,
     feature: string,
+    brand: string,
     star: number,
     shippingCost: string,
     quantityAvailable: number,
