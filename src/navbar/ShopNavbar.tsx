@@ -19,7 +19,7 @@ const Navbar = () => {
   const [showSearchList, setShowSearchList] = useState(false);
   const [searchResult, setSearchResult] = useState([] as productsDataType[]);
   const refContainer = useRef<HTMLDivElement[]>([]);
-  const searchRef = useRef("");
+  const searchRef = useRef<HTMLDivElement>(null);
 
   const handleSearch = async ({
     target,
@@ -72,15 +72,17 @@ const Navbar = () => {
   }, [openIndex]);
 
   useEffect(() => {
-    const handleDetectSearchBar = (e) => {
+    const handleDetectSearchBar = (e: React.MouseEvent<HTMLElement>) => {
+      const target = e.target as Node;
       const div = searchRef.current;
-      if (div && !div.contains(e.target)) {
+      if (div && !div.contains(target)) {
         setShowSearchList(false);
       }
     };
 
-    document.addEventListener("click", handleDetectSearchBar);
-    return () => document.removeEventListener("click", handleDetectSearchBar);
+    document.addEventListener("click", handleDetectSearchBar as any);
+    return () =>
+      document.removeEventListener("click", handleDetectSearchBar as any);
   }, []);
 
   const { cartCount } = useAddtoCartContext();
