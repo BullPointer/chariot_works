@@ -1,4 +1,5 @@
 import axios from "axios";
+import { ContactType } from "../components/ContactForm";
 
 type dataProps = {
     fullname?: string,
@@ -86,5 +87,29 @@ export const verifyAccountApi = async (id: string, token: string) => {
     const link = `http://localhost:3000/users/user/${id}/verify/${token}`;
 
     const response = await axios.get(link);
+    return response;
+}
+
+
+export const contactUsApi = async (cred: ContactType) => {
+
+    const link = `http://localhost:3000/contact-us`;
+
+    const config = {
+        headers: {
+            "Content-Type": "application/json"
+        },
+        withCredentials: true
+    }
+
+    const data = {
+        firstname: cred.firstname,
+        lastname: cred.lastname,
+        email: cred.email,
+        title: cred.title,
+        message: cred.message,
+    }
+
+    const response = await axios.post(link, data, config);
     return response;
 }

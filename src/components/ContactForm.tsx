@@ -2,6 +2,9 @@ import { useState } from "react";
 import Joi from "joi";
 import Input from "./utils/Input";
 import Textarea from "./utils/Textarea";
+import { contactUsApi } from "../handleApi/accountApi";
+import { useNavigate } from "react-router-dom";
+import AlertMsg from "./utils/AlertMsg";
 
 export type ContactType = {
   firstname: string;
@@ -11,7 +14,9 @@ export type ContactType = {
   message: string;
 };
 const ContactForm = () => {
+  const navigate = useNavigate();
   const [err, setErr] = useState({} as ContactType);
+  const [showMsg, setShowMsg] = useState(false);
   const [contact, setContact] = useState({
     firstname: "",
     lastname: "",
@@ -48,9 +53,10 @@ const ContactForm = () => {
     | React.ChangeEvent<HTMLInputElement>
     | React.ChangeEvent<HTMLTextAreaElement>) => {
     const { name, value } = target;
+
     setContact({ ...contact, [name]: value });
   };
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const errors = {} as ContactType;
@@ -60,69 +66,94 @@ const ContactForm = () => {
         errors[error.details[index].path[0] as keyof typeof contact] =
           error.details[index].message;
       }
+      console.log(error);
+
       return setErr(errors);
+    } else {
+      try {
+        setErr({} as ContactType);
+        await contactUsApi(contact);
+        setShowMsg(true);
+      } catch (error) {
+        console.log("New Error ", error);
+      }
     }
   };
 
+  const handleAlertMsg = () => {
+    setShowMsg(false);
+    navigate("/");
+  };
+
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="w-full flex flex-col justify-center items-center gap-2"
-      action=""
-      method="post"
-    >
-      <div className="w-full flex flex-row justify-center items-center gap-2">
-        <Input
-          handleChange={handleChange}
-          label={"First Name"}
-          contact={contact}
-          error={err}
-          type={"text"}
-          name={"firstname"}
+    <>
+      {showMsg && (
+        <AlertMsg
+          message={
+            "Message sent successfully! We will get in touch with you as soon as we can."
+          }
+          handleAlertMsg={handleAlertMsg}
         />
-        <Input
-          handleChange={handleChange}
-          label={"Last Name"}
-          contact={contact}
-          error={err}
-          type={"text"}
-          name={"lastname"}
-        />
-      </div>
-      <div className="w-full flex flex-row justify-center items-center gap-2">
-        <Input
-          handleChange={handleChange}
-          label={"Email"}
-          type={"text"}
-          name={"email"}
-          contact={contact}
-          error={err}
-        />
-        <Input
-          handleChange={handleChange}
-          label={"Title"}
-          type={"text"}
-          name={"title"}
-          contact={contact}
-          error={err}
-          placeholder={"MR / MRS"}
-        />
-      </div>
-      <div className="w-full flex flex-row justify-center items-center gap-2">
-        <Textarea
-          handleChange={handleChange}
-          label={"Message"}
-          contact={contact}
-          error={err}
-          name="message"
-        />
-      </div>
-      <div className="w-full flex flex-row justify-start items-center">
-        <button className="py-1 px-8 rounded-md text-xl font-bold text-white bg-blue-500">
-          Submit
-        </button>
-      </div>
-    </form>
+      )}
+      <form
+        onSubmit={handleSubmit}
+        className="w-full flex flex-col justify-center items-center gap-2"
+        action=""
+        method="post"
+      >
+        <div className="w-full flex flex-row justify-center items-center gap-2">
+          <Input
+            handleChange={handleChange}
+            label={"First Name"}
+            contact={contact}
+            error={err}
+            type={"text"}
+            name={"firstname"}
+          />
+          <Input
+            handleChange={handleChange}
+            label={"Last Name"}
+            contact={contact}
+            error={err}
+            type={"text"}
+            name={"lastname"}
+          />
+        </div>
+        <div className="w-full flex flex-row justify-center items-center gap-2">
+          <Input
+            handleChange={handleChange}
+            label={"Email"}
+            type={"text"}
+            name={"email"}
+            contact={contact}
+            error={err}
+          />
+          <Input
+            handleChange={handleChange}
+            label={"Title"}
+            type={"text"}
+            name={"title"}
+            contact={contact}
+            error={err}
+            placeholder={"MR / MRS"}
+          />
+        </div>
+        <div className="w-full flex flex-row justify-center items-center gap-2">
+          <Textarea
+            handleChange={handleChange}
+            label={"Message"}
+            contact={contact}
+            error={err}
+            name="message"
+          />
+        </div>
+        <div className="w-full flex flex-row justify-start items-center">
+          <button className="py-1 px-8 rounded-md text-xl font-bold text-white bg-blue-500">
+            Submit
+          </button>
+        </div>
+      </form>
+    </>
   );
 };
 

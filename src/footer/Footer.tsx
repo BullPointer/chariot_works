@@ -26,15 +26,18 @@ const Footer = () => {
       </div>
       <div className={`${commonStyle}  flex-row gap-5`}>
         {footerSocialMediaList.map((list, index) => (
-          <Link to={list.link} key={index}>
-            {" "}
+          <a
+            key={index}
+            href={list.link}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <Icon
-              key={index}
               className="text-white cursor-pointer"
               icon={list.logo}
               fontSize={30}
             />
-          </Link>
+          </a>
         ))}
       </div>
     </div>

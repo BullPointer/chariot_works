@@ -25,6 +25,7 @@ const Textarea = ({
         {label} <i className="text-sm text-red-400">(Required)</i>
       </label>
       <textarea
+        name={name}
         value={contact[name as keyof ContactType]}
         onChange={handleChange}
         className="w-full h-40 outline-none resize-none rounded border-2 p-3"

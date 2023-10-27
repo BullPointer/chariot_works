@@ -18,7 +18,7 @@ import ViewProducts from "./components/shop/ViewProducts";
 import ShoppingCart from "./components/shop/ShoppingCart";
 import Checkout from "./components/shop/Checkout";
 import { getAddToCartUUID, setAddToCartUUID } from "./handleApi/handleCookie";
-import { ProtectedRoutes } from "./utils/ProtectedRoutes";
+import { ProtectedCheckout } from "./utils/ProtectedRoutes";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 import ViewCategory from "./components/shop/ViewCategory";
@@ -72,9 +72,9 @@ const App = () => {
         <Route
           path="handler/order"
           element={
-            <ProtectedRoutes>
+            <ProtectedCheckout>
               <Checkout />
-            </ProtectedRoutes>
+            </ProtectedCheckout>
           }
         />
       </Route>

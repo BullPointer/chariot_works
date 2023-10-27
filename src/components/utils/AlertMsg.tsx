@@ -10,7 +10,7 @@ const AlertMsg = ({ message, handleAlertMsg }: AlertMsgType) => {
       className={`z-10 fixed left-0 top-0 ${commonStyling} flex-row backdrop-blur-sm w-[100%] h-[100%] bg-transparent`}
     >
       <div
-        className={`w-[90%] md:w-[50%] ${commonStyling} flex-col gap-2 rounded-xl py-10 px-10 bg-[#1d1a1a;] text-[#fff;]`}
+        className={`w-[90%] md:w-[50%] ${commonStyling} flex-col gap-2 rounded-xl py-10 px-10 bg-[#1d1e31;] text-[#fff;]`}
       >
         <div className="text-center text-[20px] sm:text-[23px]">{message}</div>
         <div

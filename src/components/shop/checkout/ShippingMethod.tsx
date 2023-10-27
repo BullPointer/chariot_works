@@ -16,6 +16,7 @@ const ShippingMethod = ({
   setShowComponent,
 }: AddressProptypes) => {
   const [shippingMethod, setShippingMethod] = useState("");
+  const [err, setErr] = useState<string | null>(null);
 
   const [shippingType, setShippingType] = useState<string | null>(null);
 
@@ -23,6 +24,7 @@ const ShippingMethod = ({
     const getOrders = async () => {
       try {
         const { data } = await getOrderById();
+
         setShippingType(data.order.deliveryType);
         setShippingMethod(data.order.deliveryType);
       } catch (error) {
@@ -40,8 +42,13 @@ const ShippingMethod = ({
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      await completeShippingOrders(shippingMethod, "shipping-method");
-      setShowComponent("payment");
+      if (shippingMethod === "" || shippingMethod === undefined) {
+        setErr("Select one shipping method to continue");
+      } else {
+        setErr(null);
+        await completeShippingOrders(shippingMethod, "shipping-method");
+        setShowComponent("payment");
+      }
     } catch (error) {
       console.log("Error is ", error);
     }
@@ -95,6 +102,8 @@ const ShippingMethod = ({
                 }
               />
             </div>
+            {err && <div className="text-[12px] text-[#a83f3f]">{err}</div>}
+
             <button className="py-1 px-3 my-3 rounded-full text-[13px] sm:text-[15px] text-[#fff;] bg-[#161531;]">
               Continue
             </button>

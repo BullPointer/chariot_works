@@ -47,18 +47,22 @@ const Address = ({ showComponent, setShowComponent }: AddressProptypes) => {
       const getOrders = async () => {
         try {
           const { data } = await getOrderById();
-          const addrData = data.order.receiver;
-          setShippingAddressInfo({
-            ...shippingAddressInfo,
-            fullname: addrData.username ? addrData.username : "",
-            address: addrData.homeAddr ? addrData.homeAddr : "",
-            email: addrData.email ? addrData.email : "",
-            companyName: addrData.companyName ? addrData.companyName : "",
-            phoneNum: addrData.phoneNo ? addrData.phoneNo : "",
-            zipCode: addrData.postCode ? addrData.postCode : "",
-            city: addrData.city ? addrData.city : "",
-            country: addrData.country ? addrData.country : "",
-          });
+          console.log(data);
+
+          if (data.order.status === "PENDING") {
+            const addrData = data.order.receiver;
+            setShippingAddressInfo({
+              ...shippingAddressInfo,
+              fullname: addrData.username ? addrData.username : "",
+              address: addrData.homeAddr ? addrData.homeAddr : "",
+              email: addrData.email ? addrData.email : "",
+              companyName: addrData.companyName ? addrData.companyName : "",
+              phoneNum: addrData.phoneNo ? addrData.phoneNo : "",
+              zipCode: addrData.postCode ? addrData.postCode : "",
+              city: addrData.city ? addrData.city : "",
+              country: addrData.country ? addrData.country : "",
+            });
+          }
         } catch (error) {
           console.log("Error is ", error);
         }
@@ -103,12 +107,16 @@ const Address = ({ showComponent, setShowComponent }: AddressProptypes) => {
       return setError(errors);
     } else {
       try {
-        await createShippingAddressOrders(shippingAddressInfo);
+        const response: any = await createShippingAddressOrders(
+          shippingAddressInfo
+        );
 
-        setShowComponent("shippingMethod");
-        window.scrollTo({ behavior: "smooth", left: 0, top: 0 });
-        setError({} as AddressTypes);
-        setIsLoading(false);
+        if (response.status === 201) {
+          setShowComponent("shippingMethod");
+          window.scrollTo({ behavior: "smooth", left: 0, top: 0 });
+          setError({} as AddressTypes);
+          setIsLoading(false);
+        }
       } catch (error: any) {
         console.log("New Error is ", error.response);
         setIsLoading(false);

@@ -31,7 +31,7 @@ const ViewBestSellers = () => {
   }, []);
 
   return (
-    <div className="w-full md:w-[30%] py-8 px-3 flex flex-col justify-start items-center gap-2 border-x-2">
+    <div className="w-full md:w-[30%] py-8 px-3 flex flex-col justify-start items-center gap-2 border-x-2 bg-[#fff;]">
       <div className="flex flex-row justify-between items-center w-full p-2 border-2 rounded bg-[#f3f1f1]">
         <div className="text-[18px] text-[#201f1f] ">Best Selling</div>
         {!isOpen ? (

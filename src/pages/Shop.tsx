@@ -1,9 +1,22 @@
 import { Outlet } from "react-router-dom";
 import Navbar from "../navbar/ShopNavbar";
 import Footer from "../footer/ShopFooter";
+import { useEffect } from "react";
+import { validateToken } from "../utils/AuthValidation";
+import { getAddToCartUUID, setAddToCartUUID } from "../handleApi/handleCookie";
 
 const Shop = () => {
-    // bg-[#161531]
+  useEffect(() => {
+    validateToken();
+
+    const cartId = getAddToCartUUID();
+    if (!cartId) {
+      setAddToCartUUID();
+    } else {
+      console.log(cartId);
+    }
+  }, []);
+  // bg-[#161531]
   return (
     <div>
       <Navbar />

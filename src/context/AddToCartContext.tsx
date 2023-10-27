@@ -9,6 +9,8 @@ type ContextType = {
   carts: any;
   quantity: number;
   cartCount: number;
+  shippingCost: number;
+  taxFee: number;
   setCartCount: React.Dispatch<React.SetStateAction<number>>;
   handleAddToCart: (e: productsDataType) => void;
 };
@@ -23,6 +25,8 @@ export const AddToCartProvider = ({ children }: ContextProviderProps) => {
   const [carts, setCarts] = useState([]);
   const [cartCount, setCartCount] = useState(0);
   const [quantity, setQuantity] = useState(0);
+  const [shippingCost, setShippingCost] = useState(0);
+  const [taxFee, setTaxFee] = useState(0);
 
   const handleAddToCart = async (product: productsDataType) => {
     try {
@@ -51,6 +55,17 @@ export const AddToCartProvider = ({ children }: ContextProviderProps) => {
           0
         );
         setQuantity(totalQuantity);
+        const totalShippingCost = data.products.reduce(
+          (prev: number, next: productsDataType) =>
+            prev + Number(next.shippingCost),
+          0
+        );
+        setShippingCost(totalShippingCost);
+        const totalTax = data.products.reduce(
+          (prev: number, next: productsDataType) => prev + Number(next.tax),
+          0
+        );
+        setTaxFee(totalTax);
       } catch (error) {
         console.log("New Error is ", error);
       }
@@ -65,6 +80,8 @@ export const AddToCartProvider = ({ children }: ContextProviderProps) => {
         quantity,
         setCartCount,
         cartCount,
+        shippingCost,
+        taxFee,
         handleAddToCart,
       }}
     >
