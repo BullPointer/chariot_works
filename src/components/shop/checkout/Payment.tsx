@@ -62,12 +62,12 @@ const Payment = ({
 
     setPaymentMethod(value);
   };
-  const { quantity } = useAddtoCartContext();
+  const { quantity, currency } = useAddtoCartContext();
   const config = {
     public_key: import.meta.env.VITE_FLUTTERWAVE_PUB_KEY,
     tx_ref: Date.now().toString(),
     amount: Number(quantity),
-    currency: "NGN",
+    currency: currency.toString().toUpperCase(),
     payment_options: "card,mobilemoney,ussd",
     customer: {
       email: customer?.email,

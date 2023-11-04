@@ -12,6 +12,7 @@ import ShopSearchBar from "./ShopSearchBar";
 const Navbar = () => {
   const token = localStorage.getItem("token");
   const commonFlexStyle = "flex flex-row items-center";
+  const [currencyList, setCurrencyList] = useState(false);
   const [list, setList] = useState("");
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const [screenSize, setScreenSize] = useState(window.innerWidth);
@@ -85,11 +86,13 @@ const Navbar = () => {
       document.removeEventListener("click", handleDetectSearchBar as any);
   }, []);
 
-  const { cartCount } = useAddtoCartContext();
+  const { cartCount, currency, setCurrency } = useAddtoCartContext();
 
   return (
     <div>
-      <div className={`${commonFlexStyle} justify-between bg-[#f2f2f2] p-3`}>
+      <div
+        className={`flex flex-col xs:flex-row items-center justify-between bg-[#f2f2f2] p-3`}
+      >
         <Link
           to={"/"}
           className="text-[10px] sm:text-[12px] md:text-[14px] hover:text-[#676868] text-[#7f808a] font-[550] font-serif"
@@ -116,6 +119,48 @@ const Navbar = () => {
           )}
           <div className="text-[10px] sm:text-[12px] md:text-[14px] hover:text-[#676868] text-[#7f808a] font-[550] font-serif">
             Become an affiliate?
+          </div>
+          {currencyList && (
+            <div
+              onClick={() => setCurrencyList(false)}
+              className="z-40 w-full h-full fixed top-0 left-0"
+            ></div>
+          )}
+          <div className="z-50 relative w-auto flex flex-col items-center">
+            <div
+              onClick={() => setCurrencyList(!currencyList)}
+              className="flex flex-row justify-center items-center cursor-pointer hover:text-[#676868] text-[#7f808a]"
+            >
+              <div className="flex justify-start items-center py-1 px-2 text-[10px] sm:text-[12px] md:text-[14px] font-[550] font-serif">
+                <span>{currency.toUpperCase()}</span>
+                <Icon
+                  icon={`${currency === "ngn" ? "mdi:naira" : "subway:usd"}`}
+                />
+              </div>
+              {!currencyList ? (
+                <Icon icon="ep:arrow-down-bold" />
+              ) : (
+                <Icon icon="ep:arrow-up-bold" />
+              )}
+            </div>
+            {currencyList && (
+              <div className="z-20 absolute top-full w-full">
+                <div
+                  onClick={() => setCurrency("ngn")}
+                  className="flex justify-start items-center bg-white w-full py-1 px-2 text-[10px] sm:text-[12px] md:text-[12px] cursor-pointer hover:text-[#676868] text-[#7f808a] font-[550] font-serif"
+                >
+                  <span>NGN</span>
+                  <Icon fontSize={12} icon="mdi:naira" />
+                </div>
+                <div
+                  onClick={() => setCurrency("usd")}
+                  className="flex justify-start items-center bg-white py-1 px-2 text-[10px] sm:text-[12px] md:text-[12px] cursor-pointer hover:text-[#676868] text-[#7f808a] font-[550] font-serif"
+                >
+                  <span>USD</span>
+                  <Icon fontSize={12} icon="subway:usd" />
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>

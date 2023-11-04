@@ -12,6 +12,8 @@ type ContextType = {
   shippingCost: number;
   taxFee: number;
   setCartCount: React.Dispatch<React.SetStateAction<number>>;
+  currency: string;
+  setCurrency: React.Dispatch<React.SetStateAction<string>>;
   handleAddToCart: (e: productsDataType) => void;
 };
 
@@ -27,6 +29,7 @@ export const AddToCartProvider = ({ children }: ContextProviderProps) => {
   const [quantity, setQuantity] = useState(0);
   const [shippingCost, setShippingCost] = useState(0);
   const [taxFee, setTaxFee] = useState(0);
+  const [currency, setCurrency] = useState("ngn");
 
   const handleAddToCart = async (product: productsDataType) => {
     try {
@@ -83,6 +86,8 @@ export const AddToCartProvider = ({ children }: ContextProviderProps) => {
         shippingCost,
         taxFee,
         handleAddToCart,
+        setCurrency,
+        currency,
       }}
     >
       {children}
