@@ -2,8 +2,18 @@ import ProductsByFeature from "./ProductsByFeature";
 import { DoubleCategoryCard, SingleCategoryCard } from "./CategoryCard";
 import BrandCarousel from "./BrandCarousel";
 import AdvertisementCarousel from "./AdvertisementCarousel";
+import { useEffect } from "react";
 
 const MainShop = () => {
+  const handleScrollTo = () =>
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+
+  useEffect(() => {
+    // 👇️ scroll to top on page load
+    window.addEventListener("load", handleScrollTo);
+    return () => window.removeEventListener("load", handleScrollTo);
+  }, []);
+
   return (
     <div>
       <AdvertisementCarousel />

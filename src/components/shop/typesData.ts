@@ -4,6 +4,7 @@ export type productsDataType = {
     price: number,
     category: string,
     productImage: string,
+    productImageArr: Array<string>,
     feature: string,
     brand: string,
     star: number,

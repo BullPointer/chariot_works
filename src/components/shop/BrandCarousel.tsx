@@ -51,8 +51,8 @@ const BrandCarousel = () => {
       </div>
       <Carousel
         responsive={responsive}
-        swipeable={false}
-        draggable={false}
+        swipeable={true}
+        draggable={true}
         showDots={true}
         ssr={true} // means to render carousel on server-side.
         infinite={true}

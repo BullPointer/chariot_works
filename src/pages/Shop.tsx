@@ -16,7 +16,7 @@ const Shop = () => {
       console.log(cartId);
     }
   }, []);
-  // bg-[#161531]
+
   return (
     <div>
       <Navbar />

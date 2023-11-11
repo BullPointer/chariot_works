@@ -1,32 +1,34 @@
+import { getAddToCartUUID, setAddToCartUUID } from "./handleApi/handleCookie";
 import { useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
-import { Home } from "./components/index";
-import ContactUs from "./pages/ContactUs";
-import AboutUs from "./pages/AboutUs";
-import { NotFound } from "./components/NotFound";
-import PrivacyPolicy from "./pages/PrivacyPolicy";
-import Service from "./pages/Service";
-import GypsumInstallation from "./components/GypsumInstallation";
-import PlasterInstallation from "./components/PlasterInstallation";
-import Screeding from "./components/Screeding";
-import HouseCleaning from "./components/HouseCleaning";
-import ArtWork from "./components/ArtWork";
-import Shop from "./pages/Shop";
-import MainShop from "./components/shop/MainShop";
-import ProductDetails from "./components/shop/ProductDetails";
-import ViewProducts from "./components/shop/ViewProducts";
-import ShoppingCart from "./components/shop/ShoppingCart";
-import Checkout from "./components/shop/Checkout";
-import { getAddToCartUUID, setAddToCartUUID } from "./handleApi/handleCookie";
-import { ProtectedCheckout } from "./utils/ProtectedRoutes";
-import SignIn from "./pages/SignIn";
-import SignUp from "./pages/SignUp";
-import ViewCategory from "./components/shop/ViewCategory";
 import { validateToken } from "./utils/AuthValidation";
-import Brands from "./components/shop/Brands";
-import ForgotPassword from "./components/Account/ForgotPassword";
-import NewPassword from "./components/Account/NewPassword";
-import VerifiedUser from "./components/Account/VerifiedUser";
+import { ProtectedCheckout } from "./utils/ProtectedRoutes";
+import {
+  Home,
+  NotFound,
+  ContactUs,
+  AboutUs,
+  PrivacyPolicy,
+  Service,
+  GypsumInstallation,
+  PlasterInstallation,
+  Screeding,
+  HouseCleaning,
+  ArtWork,
+  Shop,
+  MainShop,
+  ProductDetails,
+  ViewProducts,
+  ShoppingCart,
+  Checkout,
+  SignIn,
+  SignUp,
+  ViewCategory,
+  Brands,
+  ForgotPassword,
+  NewPassword,
+  VerifiedUser,
+} from "./components/index";
 
 const App = () => {
   const handleScrollTo = () =>

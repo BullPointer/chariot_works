@@ -16,7 +16,7 @@ const ProductsByCategory = ({ heading, bgColor, data }: ProdByCatProps) => {
       <div className="flex flex-row justify-between items-center px-5 my-3">
         <div className="text-[28px] font-[700] text-[#161531;]">{heading}</div>
       </div>
-      <div className="grid grid-cols-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {data?.slice(0, 12).map((p, index) => (
           <div
             key={index}

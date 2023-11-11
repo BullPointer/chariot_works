@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
+import parser from "html-react-parser";
 import { productsDataType } from "./typesData";
 import { useLocation } from "react-router-dom";
 import ProductsByCategory from "./ProductByCategory";
@@ -45,12 +46,14 @@ const ProductDetails = () => {
 
   return (
     <div className="">
-      <ProductInfo product={product} handleAddToCart={handleAddToCart} />
+      {product && (
+        <ProductInfo product={product} handleAddToCart={handleAddToCart} />
+      )}
       <div>
-        <div className="flex flex-row justify-start items-start gap-3 px-10 pt-10">
+        <div className="flex flex-row justify-start items-start gap-1 sm:gap-3 px-2 py-5 md:p-10">
           <div
             onClick={() => setActive("a")}
-            className={`py-2 px-4 ${
+            className={`py-1 px-2 sm:py-2 sm:px-4 text-[13px] sm:text-[15px] ${
               active === "a"
                 ? "bg-[#756d9c;] text-[#fff;]"
                 : "bg-[#dfdee4;] text-[#9995a7;]"
@@ -60,7 +63,7 @@ const ProductDetails = () => {
           </div>
           <div
             onClick={() => setActive("b")}
-            className={`py-2 px-4 ${
+            className={`py-1 px-2 sm:py-2 sm:px-4 text-[13px] sm:text-[15px] ${
               active === "b"
                 ? "bg-[#756d9c;] text-[#fff;]"
                 : "bg-[#dfdee4;] text-[#9995a7;]"
@@ -70,7 +73,7 @@ const ProductDetails = () => {
           </div>
           <div
             onClick={() => setActive("c")}
-            className={`py-2 px-4 ${
+            className={`py-1 px-2 sm:py-2 sm:px-4 text-[13px] sm:text-[15px] ${
               active === "c"
                 ? "bg-[#756d9c;] text-[#fff;]"
                 : "bg-[#dfdee4;] text-[#9995a7;]"
@@ -79,12 +82,12 @@ const ProductDetails = () => {
             Return Policy
           </div>
         </div>
-        <div className="px-10 pt-5 pb-20 text-[15px] text-[#4a4657;]">
+        <div className="px-2 md:px-10 pt-5 pb-20 text-[15px] text-[#4a4657;]">
           {active === "a"
-            ? product.description
+            ? parser(String(product.description))
             : active === "b"
-            ? product.reviews
-            : product.returnPolicy}
+            ? parser(String(product.reviews))
+            : parser(String(product.returnPolicy))}
         </div>
       </div>
       <ProductsByCategory
