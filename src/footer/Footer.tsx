@@ -1,5 +1,6 @@
 import { Icon } from "@iconify/react";
-import Logo from "../../Images/logo.jpeg";
+import Logo from "../assets/Logo.svg";
+
 import { footerSocialMediaList, footerlist } from "./footerlist";
 import { Link } from "react-router-dom";
 
@@ -9,11 +10,8 @@ const Footer = () => {
     <div
       className={`flex flex-col-reverse lg:flex-row justify-evenly items-center gap-2  bg-[#0e0d1f] py-10`}
     >
-      <div className="flex flex-row justify-center items-center gap-2 cursor-pointer">
-        <img className="w-6 h-6 sm:w-12 sm:h-12" src={Logo} alt="" />
-        <div className="font-bold text:xl sm:text-2xl lg:text-4xl text-white">
-          CHARIOT WORKS
-        </div>
+      <div className="flex cursor-pointer bg-white p-2">
+        <img className="text-white" src={Logo} alt="" width={80} height={80} />
       </div>
       <div className={`${commonStyle} flex-col lg:flex-row gap-5 p-3 lg:p-0`}>
         {footerlist.map((list, index) => (

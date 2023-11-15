@@ -1,5 +1,5 @@
 import { Icon } from "@iconify/react";
-import Logo from "../../Images/logo.jpeg";
+import Logo from "../assets/Logo.svg";
 import Img from "../../Images/work.jpeg";
 import { Link } from "react-router-dom";
 
@@ -7,7 +7,9 @@ const ViewService = () => {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 bg-[#1d1b1b]">
       <div className="flex flex-col py-10 justify-center items-center lg:items-start gap-8 sm:px-24 cursor-pointer">
-        <img className="w-16 h-16" src={Logo} alt="" />
+        <div className="bg-white px-2">
+          <img src={Logo} alt="" width={80} height={80} />
+        </div>
         <div className="text-3xl sm:text-6xl font-semibold text-[#eff7ee] text-center lg:text-left">
           Giving Excellence Through Service.
         </div>

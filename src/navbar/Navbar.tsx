@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Logo from "../../Images/logo.jpeg";
+import Logo from "../assets/Logo.svg";
 import BigNavbar from "./BigNavbar";
 import List from "./List";
 import SmallNavbar from "./SmallNavbar";
@@ -9,15 +9,12 @@ const Navbar = () => {
   const [show, setShow] = useState<boolean>(false);
 
   return (
-    <div className="z-10 fixed left-0 top-0 w-full bg-white px-1 py-2 flex flex-row justify-between items-center">
+    <div className="z-10 fixed left-0 top-0 w-full bg-white flex flex-row justify-between items-center p-2">
       <NavLink
         to={"/"}
-        className="flex flex-row justify-center items-center gap-2 cursor-pointer p-2"
+        className="ml-2 flex flex-row justify-center items-center gap-2 cursor-pointer"
       >
-        <img className="w-12 h-12" src={Logo} alt="" />
-        <div className="font-bold text:xl sm:text-2xl lg:text-3xl text-[#1b1a20]">
-          CHARIOT WORKS
-        </div>
+        <img className="" src={Logo} alt="" width={80} height={80} />
       </NavLink>
 
       <BigNavbar />
