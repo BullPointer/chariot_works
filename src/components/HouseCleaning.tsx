@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import Img1 from "../../Images/cleaningImg/img1.jpg";
 import Img2 from "../../Images/cleaningImg/img2.jpg";
 import Img3 from "../../Images/cleaningImg/img3.jpeg";
@@ -6,6 +7,16 @@ import Navbar from "../navbar/Navbar";
 import GetInTouch from "./GetInTouch";
 
 const HouseCleaning = () => {
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+
+    document.title = window.location.pathname;
+
+    setTimeout(() => {
+      document.title = "Chariot Interior - House Cleaning";
+    }, 2000);
+  }, []);
+
   return (
     <div className="relative min-h-screen">
       <Navbar />
@@ -32,7 +43,6 @@ const HouseCleaning = () => {
           <div className="text-center text-[22px] xs:text-[26px] lg:text-[35px] text-white">
             Featured Projects
           </div>
-          
         </div>
         <div className="w-full bg-black px-2 md:px-36 py-10">
           <div className="text-white text-center text-[18px] xs:text-[20px] lg:text-[22px] ">
@@ -40,12 +50,12 @@ const HouseCleaning = () => {
             understanding your preferences, embracing your schedule, and
             tailoring our services to your unique needs. Our sessions aren't
             just cleanings; they're transformative experiences that reinvigorate
-            your living spaces and enhance your quality of life. Therefore, embark on a
-            journey with us to redefine cleanliness as an art form and bask in
-            the bliss of harmonious living.
+            your living spaces and enhance your quality of life. Therefore,
+            embark on a journey with us to redefine cleanliness as an art form
+            and bask in the bliss of harmonious living.
           </div>
         </div>
-        <div className="w-full">
+        <div className="w-full py-14">
           <div className="text-[#2c2929] text-center text-[22px] xs:text-[26px] lg:text-[35px] font-bold p-3">
             GALLERY
           </div>

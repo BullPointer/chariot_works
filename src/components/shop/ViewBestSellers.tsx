@@ -1,25 +1,20 @@
 import { useEffect, useState } from "react";
-import { getProductsByFeatureApi } from "../../handleApi/productApi";
 import { productsDataType } from "./typesData";
 import { Link, createSearchParams } from "react-router-dom";
 import { Icon } from "@iconify/react";
+import { useAddtoCartContext } from "../../context/AddToCartContext";
 
-const ViewBestSellers = () => {
-  const [data, setData] = useState([] as productsDataType[]);
+type ViewBestSellersType = {
+  data: productsDataType[];
+};
+
+const ViewBestSellers = ({ data }: ViewBestSellersType) => {
   const [isOpen, setIsOpen] = useState(true);
 
-  useEffect(() => {
-    const getData = async () => {
-      window.innerWidth <= 768 ? setIsOpen(false) : setIsOpen(true);
-      try {
-        const { data } = await getProductsByFeatureApi("Best Sellers");
+  const { currency } = useAddtoCartContext();
 
-        setData(data.products);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    getData();
+  useEffect(() => {
+    window.innerWidth <= 768 ? setIsOpen(false) : setIsOpen(true);
   }, []);
 
   useEffect(() => {
@@ -95,7 +90,17 @@ const ViewBestSellers = () => {
                 >
                   {name}
                 </Link>
-                <div className="text-[15px]">{price}</div>
+                <div className="text-[15px] flex">
+                  <span>{price}</span>
+                  <Icon
+                    className="text-[18px] text-[#29323b]"
+                    icon={
+                      currency === "ngn"
+                        ? "tabler:currency-naira"
+                        : "tabler:currency-dollar"
+                    }
+                  />
+                </div>
               </div>
             </div>
           ))}

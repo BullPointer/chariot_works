@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { Icon } from "@iconify/react";
+import { NumericFormat } from "react-number-format";
 import ReactImageMagnify from "react-image-magnify";
 import { productsDataType } from "../typesData";
 import {
@@ -7,6 +8,7 @@ import {
   ProductSideImageCarousel,
 } from "./ProductImagesInfo";
 import { useEffect, useState } from "react";
+import { useAddtoCartContext } from "../../../context/AddToCartContext";
 
 type ProductInfoProps = {
   product: productsDataType;
@@ -18,6 +20,7 @@ const ProductInfo = ({ product, handleAddToCart }: ProductInfoProps) => {
   useEffect(() => {
     setImage(String(product.productImage));
   }, [product]);
+  const { currency } = useAddtoCartContext();
 
   return (
     <div className="w-full flex flex-col md:flex-row justify-center items-start">
@@ -27,24 +30,33 @@ const ProductInfo = ({ product, handleAddToCart }: ProductInfoProps) => {
         images={product.productImageArr || []}
       />
       <div className="w-full grid grid-cols-1 lg:grid-cols-2 p-2 md:px-10 md:py-16">
-        <div className="h-[200px] lg:h-[300px]">
+        <div className="h-[200px] lg:h-[400px] bg-blue-500">
           <img
             className="w-full h-[100%] object-cover rounded-md hover:bg-[120%] block lg:hidden"
             src={`http://localhost:3000/${image}`}
             alt=""
           />
           <ReactImageMagnify
-            className="z-10 hidden lg:block "
+            className="z-10 hidden lg:block min-w-full w-full bg-green-500 object-contain"
             {...{
               smallImage: {
-                alt: "Wristwatch by Ted Baker London",
-                isFluidWidth: true,
+                alt: product.productImage,
+                isFluidWidth: false,
                 src: `http://localhost:3000/${image}`,
+                width: 524,
+                height: 300,
+                sizes:
+                  "(max-width: 480px) 100vw, (max-width: 1200px) 30vw, 360px, ",
               },
               largeImage: {
                 src: `http://localhost:3000/${image}`,
+                isFluidWidth: false,
+                // width: 554,
                 width: 524,
-                height: 800,
+                height: 900,
+                magnifierHeight: 100,
+                magnifieWidth: 10,
+                // zoomLevel: 1.5,
               },
             }}
           />
@@ -59,10 +71,17 @@ const ProductInfo = ({ product, handleAddToCart }: ProductInfoProps) => {
             </div>
           </div>
           <div className="flex flex-row justify-start items-center">
-            <div className="text-[30px] text-[#161531;]">{product.price}</div>
+            <div className="text-[30px] text-[#161531;]">
+              {/* {<NumericFormat value={product.price} />} */}
+              {product.price}
+            </div>
             <Icon
               className="text-[30px] text-[#161531;]"
-              icon="tabler:currency-naira"
+              icon={
+                currency === "ngn"
+                  ? "tabler:currency-naira"
+                  : "tabler:currency-dollar"
+              }
             />
           </div>
           <div className="flex flex-row justify-start items-center gap-2">
@@ -70,7 +89,11 @@ const ProductInfo = ({ product, handleAddToCart }: ProductInfoProps) => {
               <div className="text-[15px] text-[#e23841;]">{product.tax}</div>
               <Icon
                 className="text-[17px] text-[#e23841;]"
-                icon="tabler:currency-naira"
+                icon={
+                  currency === "ngn"
+                    ? "tabler:currency-naira"
+                    : "tabler:currency-dollar"
+                }
               />
             </div>
             <div className="text-[15px] text-[#e23841;]">Additional tax</div>
@@ -104,7 +127,11 @@ const ProductInfo = ({ product, handleAddToCart }: ProductInfoProps) => {
                 </div>
                 <Icon
                   className="text-[17px] text-[#161538;] font-[400]"
-                  icon="tabler:currency-naira"
+                  icon={
+                    currency === "ngn"
+                      ? "tabler:currency-naira"
+                      : "tabler:currency-dollar"
+                  }
                 />
               </div>
             </div>

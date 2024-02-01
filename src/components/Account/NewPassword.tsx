@@ -1,5 +1,5 @@
 import { Link, useSearchParams } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Joi from "joi";
 import { resetPasswordApi } from "../../handleApi/accountApi";
 import AlertMsg from "../utils/AlertMsg";
@@ -78,6 +78,16 @@ const NewPassword = () => {
       setIsMsg(true);
     }
   };
+
+  useEffect(() => {
+    window.addEventListener("load", () => {
+      document.title = window.location.pathname;
+
+      setTimeout(() => {
+        document.title = "Chariot Interior New password";
+      }, 2000);
+    });
+  }, []);
 
   return (
     <div className="flex flex-row  items-center gap-2 min-h-screen w-full bg-[#f1f1f1]">

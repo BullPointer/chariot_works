@@ -8,6 +8,7 @@ import { mapNumber } from "../utils/Shortener";
 import { Link } from "react-router-dom";
 import { removeCartByIdApi, updateCartByIdApi } from "../../handleApi/cartApi";
 import ViewBestSellers from "./ViewBestSellers";
+import { getProductsByFeatureApi } from "../../handleApi/productApi";
 
 type openOptionsType = {
   id: string;
@@ -16,12 +17,21 @@ type openOptionsType = {
 
 const ShoppingCart = () => {
   const refContainer = useRef<HTMLDivElement[]>([]);
+  const [bestSellerData, setBestSellerData] = useState(
+    [] as productsDataType[]
+  );
   const [openOptions, setOpenOptions] = useState({
     id: "",
     index: null,
   } as openOptionsType);
   const [sliceQty, setSliceQty] = useState({ from: 0, to: 5 });
-  const { cartCount, quantity, carts: items } = useAddtoCartContext();
+  const {
+    cartCount,
+    quantity,
+    carts: items,
+    currency,
+    currencyConverter,
+  } = useAddtoCartContext();
 
   const handleShowmore = (qty: number) => {
     if (sliceQty.from < qty - 5) {
@@ -75,6 +85,28 @@ const ShoppingCart = () => {
     }
   };
 
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const { data } = await getProductsByFeatureApi("Best Sellers");
+
+        const convertedProduct = data.products.map((p: productsDataType) => {
+          const converter = currencyConverter(p?.price);
+
+          return {
+            ...p,
+            price: Number(String(converter).substring(0, 5)),
+          };
+        });
+
+        setBestSellerData(convertedProduct);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getData();
+  }, [currency]);
+
   return (
     <div className="flex flex-col md:flex-row justify-center items-start bg-[#f1f1f5;]">
       <div className="w-full md:w-[70%] pt-5">
@@ -104,7 +136,11 @@ const ShoppingCart = () => {
                       <p>{item.price}</p>
                       <Icon
                         className="text-[22px] text-[#000;]"
-                        icon="tabler:currency-naira"
+                        icon={
+                          currency === "ngn"
+                            ? "tabler:currency-naira"
+                            : "tabler:currency-dollar"
+                        }
                       />
                     </p>
                     <p>
@@ -208,7 +244,11 @@ const ShoppingCart = () => {
                   <p>{quantity}</p>
                   <Icon
                     className="text-[22px] text-[#000;]"
-                    icon="tabler:currency-naira"
+                    icon={
+                      currency === "ngn"
+                        ? "tabler:currency-naira"
+                        : "tabler:currency-dollar"
+                    }
                   />
                 </p>
               </div>
@@ -223,7 +263,7 @@ const ShoppingCart = () => {
           </div>
         </div>
       </div>
-      <ViewBestSellers />
+      <ViewBestSellers data={bestSellerData} />
     </div>
   );
 };

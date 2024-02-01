@@ -10,6 +10,7 @@ const Home = () => {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
 
   useEffect(() => {
+    document.title = "Chariot Interior: Quality. Craftmanship. Assurance";
     // 👇️ scroll to top on page load
     window.addEventListener("load", handleScrollTo);
     return () => window.removeEventListener("load", handleScrollTo);

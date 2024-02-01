@@ -18,6 +18,17 @@ const PrivacyPolicy = () => {
     };
     getData();
   }, []);
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+
+    document.title = window.location.pathname;
+
+    setTimeout(() => {
+      document.title = "Chariot Interior - Privacy Policy";
+    }, 2000);
+  }, []);
+
   return (
     <div className="w-full h-screen">
       <Navbar />

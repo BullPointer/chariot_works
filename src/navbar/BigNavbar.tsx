@@ -30,7 +30,7 @@ const BigNavbar = () => {
           >
             {data.text}
           </NavLink>
-          <ul className="absolute left-0 top-8 pt-4 bg-white w-[300px] rounded-b-sm">
+          <ul className="absolute left-0 top-8 pt-4 bg-white w-[300px] rounded-b-sm ">
             {hoveredIndex === index &&
               data?.list?.map((item, i) => (
                 <li

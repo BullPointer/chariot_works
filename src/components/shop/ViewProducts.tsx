@@ -1,35 +1,105 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { productsDataType } from "./typesData";
 import { Link, createSearchParams, useLocation } from "react-router-dom";
 import { Icon } from "@iconify/react";
 import { shortenLetters } from "../utils/Shortener";
-import { getProductsByFeatureApi } from "../../handleApi/productApi";
+import {
+  getProductsApi,
+  getProductsByFeatureApi,
+} from "../../handleApi/productApi";
 import ViewBestSellers from "./ViewBestSellers";
+import { useAddtoCartContext } from "../../context/AddToCartContext";
 
 const ViewProducts = () => {
   const { state } = useLocation();
   const [productLength, setProductLength] = useState(100);
-  const [loadIndex, setLoadIndex] = useState(12);
+  const [loadIndex, setLoadIndex] = useState(9);
   const [data, setData] = useState([] as productsDataType[]);
+  const [bestSellerData, setBestSellerData] = useState(
+    [] as productsDataType[]
+  );
+  const [isLoading, setIsLoading] = useState(false);
+
+  const { currency, currencyConverter } = useAddtoCartContext();
 
   useEffect(() => {
     const getProductsFunc = async () => {
       try {
-        const response = await getProductsByFeatureApi(state.feature);
+        setData([]);
+        setIsLoading(true);
+        if (state?.feature === "All Category") {
+          const response = await getProductsApi();
 
-        setProductLength(response.data.products.length);
-        setData(response.data.products.slice(0, loadIndex));
+          setProductLength(response.data.products.length);
+
+          const convertedProduct = response.data.products.map(
+            (p: productsDataType) => {
+              const converter = currencyConverter(p?.price);
+              return {
+                ...p,
+                price: Number(String(converter).substring(0, 5)),
+              };
+            }
+          );
+
+          setData(convertedProduct);
+          setIsLoading(false);
+        } else {
+          const response = await getProductsByFeatureApi(state?.feature);
+
+          setProductLength(response.data.products.length);
+          const convertedProduct = response.data.products.map(
+            (p: productsDataType) => {
+              const converter = currencyConverter(p?.price);
+              return {
+                ...p,
+                price: Number(String(converter).substring(0, 5)),
+              };
+            }
+          );
+
+          setData(convertedProduct);
+          setIsLoading(false);
+        }
       } catch (error) {
         console.log("Error is ", error);
       }
     };
+
     getProductsFunc();
-  }, [loadIndex, state]);
+  }, [loadIndex, state, currency]);
+
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const { data } = await getProductsByFeatureApi("Best Sellers");
+
+        const convertedProduct = data.products.map((p: productsDataType) => {
+          const converter = currencyConverter(p?.price);
+
+          return {
+            ...p,
+            price: Number(String(converter).substring(0, 5)),
+          };
+        });
+
+        setBestSellerData(convertedProduct);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getData();
+  }, [currency]);
+
+  const loadMoreProducts = useCallback(() => {
+    !(loadIndex > productLength) && setLoadIndex((prev) => prev + 3);
+    console.log("Load index is ", loadIndex);
+  }, []);
 
   return (
     <>
-      {data.length < 1 ? (
+      {isLoading ? (
         <div className="w-full py-16">
           <Icon
             className="text-[250px] xs:text-[300px] mx-auto text-[#353e63;]"
@@ -45,7 +115,7 @@ const ViewProducts = () => {
               </div>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
-              {data?.map((p, index) => (
+              {data?.slice(0, loadIndex).map((p, index) => (
                 <div
                   key={index}
                   className="flex flex-col items-start justify-start gap-2 pb-5 border-2 rounded-md mx-2 py-2 px-4 bg-[#fff;]"
@@ -90,7 +160,11 @@ const ViewProducts = () => {
                     </div>
                     <Icon
                       className="text-[22px] text-[#2291FF;]"
-                      icon="tabler:currency-naira"
+                      icon={
+                        currency === "ngn"
+                          ? "tabler:currency-naira"
+                          : "tabler:currency-dollar"
+                      }
                     />
                   </div>
                   <Link
@@ -121,7 +195,7 @@ const ViewProducts = () => {
                 <div className="text-[#2291FF;]">No more records</div>
               ) : (
                 <div
-                  onClick={() => setLoadIndex(loadIndex + 12)}
+                  onClick={() => loadMoreProducts()}
                   className="py-2 px-3 rounded-md cursor-pointer hover:bg-[#185088;] hover:text-[#fff;] text-[#2291FF;] border-2 border-[#2291FF;]"
                 >
                   Load more
@@ -129,7 +203,7 @@ const ViewProducts = () => {
               )}
             </div>
           </div>
-          <ViewBestSellers />
+          <ViewBestSellers data={bestSellerData} />
         </div>
       )}
     </>

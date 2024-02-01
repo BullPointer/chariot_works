@@ -3,6 +3,7 @@ import { productsDataType } from "./typesData";
 import { Link, createSearchParams } from "react-router-dom";
 import { Icon } from "@iconify/react";
 import { shortenLetters } from "../utils/Shortener";
+import { useAddtoCartContext } from "../../context/AddToCartContext";
 
 type ProdByCatProps = {
   heading: string;
@@ -11,6 +12,8 @@ type ProdByCatProps = {
 };
 
 const ProductsByCategory = ({ heading, bgColor, data }: ProdByCatProps) => {
+  const { currency } = useAddtoCartContext();
+
   return (
     <div style={{ backgroundColor: `${bgColor}` }} className="py-20">
       <div className="flex flex-row justify-between items-center px-5 my-3">
@@ -60,7 +63,11 @@ const ProductsByCategory = ({ heading, bgColor, data }: ProdByCatProps) => {
               <div className="text-[22px] text-[#2291FF;]">{p.price}</div>
               <Icon
                 className="text-[22px] text-[#2291FF;]"
-                icon="tabler:currency-naira"
+                icon={
+                  currency === "ngn"
+                    ? "tabler:currency-naira"
+                    : "tabler:currency-dollar"
+                }
               />
             </div>
             <Link

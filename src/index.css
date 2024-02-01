@@ -1,10 +1,31 @@
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display&family=Poppins:wght@200;400;700&display=swap");
+
 * {
   margin: 0;
   padding: 0;
 }
 
+html::-webkit-scrollbar {
+  width: 0.8vw;
+}
+
+html::-webkit-scrollbar-track {
+  width: 30px;
+  /* background: red; */
+  background: #240d0b31;
+}
+
+html::-webkit-scrollbar-thumb {
+  background: #16152c;
+}
+
 body {
   background-color: #fff;
+  font-family: "Poppins", sans-serif;
+}
+
+.playfair-font {
+  font-family: "Playfair Display", serif;
 }
 
 .img-fit {

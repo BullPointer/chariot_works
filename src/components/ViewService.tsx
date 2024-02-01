@@ -13,11 +13,11 @@ const ViewService = () => {
         <div className="text-3xl sm:text-6xl font-semibold text-[#eff7ee] text-center lg:text-left">
           Giving Excellence Through Service.
         </div>
-        <p className="text-white text-[18px] text-center lg:text-left p-2 sm:p-0">
+        <p className="text-white text-[18px] text-center lg:text-left p-2 sm:p-0 playfair-font">
           Over the years we have successfully achieve good customer relationship
           through professionalism in handling our jobs.
         </p>
-        <p className="text-white text-[18px] text-center lg:text-left p-2 sm:p-0">
+        <p className="text-white text-[18px] text-center lg:text-left p-2 sm:p-0 playfair-font">
           Some of our qualiies includes: Accurate Installations, Durable
           Installations, Good time management , Personel Safety, Minimum work
           place ltering, Speedy job delivery.

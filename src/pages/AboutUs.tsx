@@ -84,6 +84,16 @@ const AboutUs = () => {
     };
   }, []);
 
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+
+    document.title = window.location.pathname;
+
+    setTimeout(() => {
+      document.title = "Chariot Interior - About Us";
+    }, 2000);
+  }, []);
+
   return (
     <div ref={scrollDivRef} className="relative h-screen overflow-auto">
       <Navbar />

@@ -15,13 +15,20 @@ const ProductDetails = () => {
   const [relatedProduct, setRelatedProduct] = useState(
     [] as productsDataType[]
   );
+  const { currencyConverter, currency } = useAddtoCartContext();
 
   useEffect(() => {
     const getProductsFunc = async () => {
       try {
         const { data } = await getProductByIdApi(state.id);
 
-        setProduct(data.product as productsDataType);
+        const product = data?.product;
+        const converter = await currencyConverter(product?.price);
+
+        product.price = Number(String(converter).substring(0, 5));
+
+        setProduct(product as productsDataType);
+        window.name = product.name;
       } catch (error) {
         console.log("New Error is ", error);
       }
@@ -34,13 +41,21 @@ const ProductDetails = () => {
         const filteredProduct = data.products.filter(
           (d: productsDataType) => d.category === state.category
         );
-        setRelatedProduct(filteredProduct);
+        const convertedProduct = filteredProduct?.map((p: productsDataType) => {
+          const converter = currencyConverter(p?.price);
+          return {
+            ...p,
+            price: Number(String(converter).substring(0, 5)),
+          };
+        });
+
+        setRelatedProduct(convertedProduct);
       } catch (error) {
         console.log("Error is ", error);
       }
     };
     getRelatedProductsFunc();
-  }, [state]);
+  }, [state, currency]);
 
   const { handleAddToCart } = useAddtoCartContext();
 

@@ -27,6 +27,16 @@ const VerifiedUser = () => {
     validateFunc();
   }, []);
 
+  useEffect(() => {
+    window.addEventListener("load", () => {
+      document.title = window.location.pathname;
+
+      setTimeout(() => {
+        document.title = "Chariot Interior Verified user";
+      }, 2000);
+    });
+  }, []);
+
   return (
     <div className="flex flex-row justify-center items-center min-h-screen w-full bg-[#f1f1f1]">
       <div

@@ -6,8 +6,19 @@ import galary3 from "../../Images/gypsumImg/galary3.jpeg";
 import Footer from "../footer/Footer";
 import Navbar from "../navbar/Navbar";
 import GetInTouch from "./GetInTouch";
+import { useEffect } from "react";
 
 const ArtWork = () => {
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+
+    document.title = window.location.pathname;
+
+    setTimeout(() => {
+      document.title = "Chariot Interior - Art Work";
+    }, 2000);
+  }, []);
+
   return (
     <div className="relative min-h-screen">
       <Navbar />
@@ -71,7 +82,7 @@ const ArtWork = () => {
             that redefine living spaces.
           </div>
         </div>
-        <div className="w-full">
+        <div className="w-full py-14">
           <div className="text-[#2c2929] text-center text-[22px] xs:text-[26px] lg:text-[35px] font-bold p-3">
             GALLERY
           </div>

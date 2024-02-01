@@ -17,6 +17,17 @@ const Shop = () => {
     }
   }, []);
 
+  useEffect(() => {
+    window.addEventListener("load", () => {
+      document.title = window.location.pathname;
+
+      setTimeout(() => {
+        document.title =
+          window.name?.length > 0 ? window.name : "Chariot Interior Shop item";
+      }, 2000);
+    });
+  }, []);
+
   return (
     <div>
       <Navbar />

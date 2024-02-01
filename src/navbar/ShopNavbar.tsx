@@ -176,7 +176,7 @@ const Navbar = () => {
           />
           <Link to={"/shop"}>
             <div className="text-[13px] sm:text-[18px] lg:text-[22px] font-bold opacity-80">
-              CHARIOT WORKS
+              CHARIOT INTERIOR
             </div>
             <div className="text-[10px] sm:text-[12px]">
               Quality. Craftmanship. Assurance

@@ -1,7 +1,8 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Input from "../components/utils/AuthInput";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Joi from "joi";
+import Logo from "../assets/Logo.svg";
 import { signinApi } from "../handleApi/accountApi";
 
 type SignInTypes = { email: string; password: string };
@@ -72,17 +73,24 @@ const Signin = () => {
       }
     }
   };
+  useEffect(() => {
+    window.addEventListener("load", () => {
+      document.title = window.location.pathname;
+
+      setTimeout(() => {
+        document.title = "Chariot Interior Sign-In";
+      }, 2000);
+    });
+  }, []);
 
   return (
     <div className="flex flex-row  items-center gap-2 min-h-screen w-full bg-[#f1f1f1]">
       <div className="mx-auto pb-20 w-[90%] md:w-[80%] lg:w-[50%] border border-[#d3d2d2] h-auto bg-white rounded-md">
-        <div className="flex flex-col justify-center items-start px-3 pt-1 pb-5 lg:px-5 w-[100%] mx-auto">
+        <div className="flex flex-col justify-center items-start px-3 pt-1 lg:px-5 w-[100%] mx-auto">
           <Link to={"/"}>
-            <div className="py-1 px-3 rounded-md text-[21px] font-bold text-[#272525]">
-              CHARIOT-INTERIOR
-            </div>
+            <img src={Logo} alt="" width={110} />
           </Link>
-          <div className="w-full text-center text-[18px] lg:text-[18px] py-2 font-[700] text-[#2c3355]">
+          <div className="w-full text-center text-[18px] lg:text-[18px] pt-2 font-[700] text-[#2c3355]">
             Sign in
           </div>
         </div>

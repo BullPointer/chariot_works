@@ -97,11 +97,12 @@ const Payment = ({
             callback: async (response) => {
               console.log(response);
               await completeShippingOrders(paymentMethod, "payment-method");
-              setCompletedPurchase(true);
               closePaymentModal(); // this will close the modal programmatically
+              setCompletedPurchase(true);
             },
             onClose: () => {
               console.log("Listen, I'm closed for today!");
+              setCompletedPurchase(true);
             },
           });
         } catch (error) {

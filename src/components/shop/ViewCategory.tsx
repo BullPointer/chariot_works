@@ -4,14 +4,23 @@ import { Icon } from "@iconify/react";
 import { productsDataType } from "./typesData";
 import { Link, createSearchParams, useLocation } from "react-router-dom";
 import { shortenLetters } from "../utils/Shortener";
-import { getProductsByCategoryApi } from "../../handleApi/productApi";
+import {
+  getProductsByCategoryApi,
+  getProductsByFeatureApi,
+} from "../../handleApi/productApi";
 import ViewBestSellers from "./ViewBestSellers";
+import { useAddtoCartContext } from "../../context/AddToCartContext";
 
 const ViewCategory = () => {
   const { state } = useLocation();
   const [productLength, setProductLength] = useState(100);
   const [loadIndex, setLoadIndex] = useState(12);
   const [data, setData] = useState([] as productsDataType[]);
+  const [bestSellerData, setBestSellerData] = useState(
+    [] as productsDataType[]
+  );
+
+  const { currency, currencyConverter } = useAddtoCartContext();
 
   useEffect(() => {
     const getProductsFunc = async () => {
@@ -23,13 +32,45 @@ const ViewCategory = () => {
         console.log("The State is ", state);
 
         setProductLength(response.data.products.length);
-        setData(response.data.products.slice(0, loadIndex));
+        const convertedProduct = response.data.products.map(
+          (p: productsDataType) => {
+            const converter = currencyConverter(p?.price);
+            return {
+              ...p,
+              price: Number(String(converter).substring(0, 5)),
+            };
+          }
+        );
+
+        setData(convertedProduct.slice(0, loadIndex));
       } catch (error) {
         console.log("Error is ", error);
       }
     };
     getProductsFunc();
-  }, [loadIndex, state]);
+  }, [loadIndex, state, currency]);
+
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const { data } = await getProductsByFeatureApi("Best Sellers");
+
+        const convertedProduct = data.products.map((p: productsDataType) => {
+          const converter = currencyConverter(p?.price);
+
+          return {
+            ...p,
+            price: Number(String(converter).substring(0, 5)),
+          };
+        });
+
+        setBestSellerData(convertedProduct);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getData();
+  }, [currency]);
 
   useEffect(() => {
     window.scrollTo({
@@ -141,7 +182,7 @@ const ViewCategory = () => {
               )}
             </div>
           </div>
-          <ViewBestSellers />
+          <ViewBestSellers data={bestSellerData} />
         </div>
       )}
     </>

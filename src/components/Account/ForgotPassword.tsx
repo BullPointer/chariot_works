@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Joi from "joi";
 import { forgotPasswordApi } from "../../handleApi/accountApi";
 
@@ -49,6 +49,16 @@ const ForgotPassword = () => {
       }
     }
   };
+
+  useEffect(() => {
+    window.addEventListener("load", () => {
+      document.title = window.location.pathname;
+
+      setTimeout(() => {
+        document.title = "Chariot Interior Forgot password";
+      }, 2000);
+    });
+  }, []);
 
   return (
     <div className="flex flex-row  items-center gap-2 min-h-screen w-full bg-[#f1f1f1]">

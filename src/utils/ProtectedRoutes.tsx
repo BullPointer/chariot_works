@@ -30,7 +30,9 @@ export const ProtectedCheckout = ({ children }: ProtectedRoutesProps) => {
   const { cartCount } = useAddtoCartContext();
   const location = useLocation();
   const tokenExists = localStorage?.getItem("token");
-  if (tokenExists && cartCount > 0) {
+  if (!tokenExists) {
+    return <Navigate to={"/usr/sign-in"} state={{ path: location.pathname }} />;
+  } else if (tokenExists && cartCount > 0) {
     const token = JSON.parse(tokenExists);
     const expiredTimestamp = token?.exp;
     const currentTimestamp = Math.floor(Date.now());

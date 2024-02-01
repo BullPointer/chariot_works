@@ -4,15 +4,16 @@ import ContactForm from "../components/ContactForm";
 import Footer from "../footer/Footer";
 
 const ContactUs = () => {
-  const handleScrollTo = () =>
+  useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
 
-  useEffect(() => {
-    // 👇️ scroll to top on page load
-    window.addEventListener("load", handleScrollTo);
-    return () => window.removeEventListener("load", handleScrollTo);
+    document.title = window.location.pathname;
+
+    setTimeout(() => {
+      document.title = "Chariot Interior - Contact-us";
+    }, 2000);
   }, []);
-  
+
   return (
     <div className="relative min-h-screen">
       <Navbar />

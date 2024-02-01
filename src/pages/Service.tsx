@@ -3,8 +3,19 @@ import Img from "../../Images/service.jpg";
 import Img2 from "../../Images/work.jpeg";
 import Footer from "../footer/Footer";
 import GetInTouch from "../components/GetInTouch";
+import { useEffect } from "react";
 
 const Service = () => {
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+
+    document.title = window.location.pathname;
+
+    setTimeout(() => {
+      document.title = "Chariot Interior - Service";
+    }, 2000);
+  }, []);
+
   return (
     <div className="relative h-screen overflow-auto">
       <Navbar />
