@@ -5,6 +5,7 @@ import { Link, createSearchParams } from "react-router-dom";
 import { Icon } from "@iconify/react";
 import { shortenLetters } from "../utils/Shortener";
 import { getProductsByFeatureApi } from "../../handleApi/productApi";
+import { useAddtoCartContext } from "../../context/AddToCartContext";
 
 type ProdByCatProps = {
   heading: string;
@@ -21,19 +22,31 @@ const ProductsByFeature = ({
 }: ProdByCatProps) => {
   const [data, setData] = useState([] as productsDataType[]);
 
+  const { currency, currencyConverter } = useAddtoCartContext();
+
   useEffect(() => {
     const getProductsFunc = async () => {
       try {
         const response = await getProductsByFeatureApi(feature);
 
-        setData(response.data.products);
+        const convertedProduct = response.data.products.map(
+          (p: productsDataType) => {
+            const converter = currencyConverter(p?.price);
+
+            return {
+              ...p,
+              price: Number(String(converter).substring(0, 5)),
+            };
+          }
+        );
+        setData(convertedProduct);
       } catch (error) {
         console.log("Error is ", error);
       }
     };
     getProductsFunc();
     // console.log(data);
-  }, []);
+  }, [currency]);
 
   return (
     <div style={{ backgroundColor: `${bgColor}` }} className="pt-10 pb-10">
@@ -102,7 +115,11 @@ const ProductsByFeature = ({
               </div>
               <Icon
                 className="text-[22px] text-[#2291FF;]"
-                icon="tabler:currency-naira"
+                icon={
+                  currency === "ngn"
+                    ? "tabler:currency-naira"
+                    : "tabler:currency-dollar"
+                }
               />
             </div>
             <Link
